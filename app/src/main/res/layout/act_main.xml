@@ -1,0 +1,19 @@
+<com.vincent.julie.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    zhy:rightPadding="@dimen/size_100">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+        <include layout="@layout/act_left_menu" />
+
+        <include layout="@layout/act_main_content"/>
+    </LinearLayout>
+
+</com.vincent.julie.view.SlidingMenu>

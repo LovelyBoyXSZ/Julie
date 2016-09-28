@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vincent.julie">
+
+    <uses-permission android:name="android.permission.READ_SMS"/>//读取信息
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>//读取手机状态
+    <uses-permission android:name="android.permission.CAMERA"/>//相机
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>//读取外部存储
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
+
+    <application
+        android:name=".app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.SecondsOpenAppActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.GuideActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".ui.activity.WelcomActivity" />
+        <activity android:name=".ui.activity.PhoneInfoActivity"/>
+        <activity android:name=".ui.activity.QrScodeUtilsActivity"/>
+
+
+        <!--Service 相关-->
+        <service
+            android:name=".service.JulieService"
+            android:enabled="true"
+            android:persistent="true">
+            <!--<intent-filter android:priority="1000">-->
+                <!--<action android:name="START_ADDITIONAL_SERVICE" />-->
+            <!--</intent-filter>-->
+        </service>
+        <!--广播-->
+        <receiver android:name=".reciver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

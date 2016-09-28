@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_welcom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_welcom"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:layout_marginTop="@dimen/size_15"
+        android:layout_marginRight="@dimen/size_15"
+        android:layout_gravity="right"
+        android:padding="@dimen/size_5"
+        android:id="@+id/tv_go_main"
+        android:text="2s"
+        android:textSize="@dimen/size_18sp"
+        android:background="@drawable/shape_act_welcom_go_main"
+        android:textColor="@color/common_color_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</FrameLayout>
