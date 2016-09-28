@@ -1,11 +1,8 @@
 package com.vincent.julie.util;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.widget.Toast;
-
-/**
- * Created by Vincent on 2016/8/27.
- */
 
 /**
   *Toast工具
@@ -37,5 +34,15 @@ public class ToastUtils {
     public static void showDefaultToast(Context context,String msg){
         Toast.makeText(context.getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
-
+    /**
+     *@param context
+     * @param msg 
+     *@author Vincent QQ:1032006226
+     *create at 2016/9/28 22:29
+     */
+    public static void showDefaultToastCenter(Context context,String msg){
+        toast=Toast.makeText(context,msg,Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+    }
 }
