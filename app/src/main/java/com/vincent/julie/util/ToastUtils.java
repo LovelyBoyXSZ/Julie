@@ -45,4 +45,21 @@ public class ToastUtils {
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
+    /**
+     * 〈一句话功能简述〉
+     * 〈功能详细描述〉
+     * @param  context 上下文对象
+     * @param msg 消息
+     * @exception/throws [违例类型] [违例说明]
+     * @see          [类、类#方法、类#成员]
+     * 创建时间：2016/9/29 14:07
+     * @author Vincent
+     */
+    public static void showSingleToastCenter(Context context,String msg){
+        if(toast==null){
+            toast=Toast.makeText(context,msg,Toast.LENGTH_LONG);
+        }
+        toast.setGravity(Gravity.CENTER,0,0);
+        toast.show();
+    }
 }

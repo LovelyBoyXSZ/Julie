@@ -109,7 +109,7 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
             MyLog.d("MainActivity", "当前Fragment是MainFragment，处理返回键事件");
             if (isQuit == false) {
                 isQuit = true;
-                ToastUtils.showSingleTextToast(getApplicationContext(), "再按一次离开app");
+                ToastUtils.showDefaultToastCenter(getApplicationContext(), "再按一次离开app");
                 TimerTask task = null;
                 task = new TimerTask() {
                     @Override
