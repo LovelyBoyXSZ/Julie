@@ -1,15 +1,15 @@
 package com.vincent.julie.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 
+import com.jph.takephoto.app.TakePhotoFragment;
 import com.vincent.julie.listener.BackHandledInterface;
 
 
 /**
  * Created by Administrator on 2016/7/8.
  */
-public abstract class BackHandledFragment extends Fragment {
+public abstract class BackHandledFragment extends TakePhotoFragment {
     
     protected BackHandledInterface mBackHandledInterface;
 

@@ -1,9 +1,9 @@
 package com.vincent.julie.ui.activity;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +60,7 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
         MyApplication.addActivity(this);
         initViews();
         startService();
-        tool = new FragmentSwitchTool(getFragmentManager(), R.id.flContainer);
+        tool = new FragmentSwitchTool(getSupportFragmentManager(), R.id.flContainer);
         tool.setClickableViews(llChat, llFriends, llContacts, llSettings);
         tool.addSelectedViews(new View[]{ivChat, tvChat}).addSelectedViews(new View[]{ivFriends, tvFriends})
                 .addSelectedViews(new View[]{ivContacts, tvContacts}).addSelectedViews(new View[]{ivSettings, tvSettings});
