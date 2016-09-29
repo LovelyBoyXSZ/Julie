@@ -10,7 +10,6 @@
         android:id="@+id/textView2" />
 
     <ProgressBar
-        style="?android:attr/progressBarStyle"
         android:layout_width="@dimen/size_20"
         android:layout_height="@dimen/size_20"
         android:id="@+id/progressBar" />
