@@ -22,7 +22,6 @@ import butterknife.OnClick;
  * @author Vincent QQ1032006226
  *         created at 2016/9/26 15:54
  */
-
 public class CenterFragment extends BackHandledFragment {
 
     @BindView(R.id.tv_choose_img)
