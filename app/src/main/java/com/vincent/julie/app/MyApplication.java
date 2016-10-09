@@ -16,6 +16,7 @@ import java.util.List;
  * Created by Vincent on 2016/9/26.
  */
 
+
 public class MyApplication extends Application {
 
     private static MyApplication app;

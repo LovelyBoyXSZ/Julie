@@ -64,6 +64,7 @@ public class WelcomActivity extends BaseActivity {
                         if(!isFristInstall){
                             goGuide();
                         }else {
+//                            goGuide();//test guide
                             goMain();
                         }
                     }
