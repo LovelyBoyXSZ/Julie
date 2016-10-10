@@ -37,9 +37,6 @@
             android:name=".service.JulieService"
             android:enabled="true"
             android:persistent="true">
-            <intent-filter android:priority="1000">
-                <!--<action android:name="START_ADDITIONAL_SERVICE" />-->
-            </intent-filter>
         </service>
 
         <service android:name=".service.JobCastielService"
