@@ -136,11 +136,17 @@ public class GuideActivity extends BaseActivity {
         if (position < 0 || position > mViews.size() - 1 || currentIndex == position) {
             return;
         }
-
         guideDots[position].setSelected(true);
         guideDots[currentIndex].setSelected(false);
 
         currentIndex = position;
+        if(position==3){
+            if(ivGoMain!=null)
+                ivGoMain.setVisibility(View.GONE);
+        }else {
+            if(ivGoMain!=null)
+                ivGoMain.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
