@@ -39,7 +39,6 @@ public class JobCastielService extends JobService {
     public boolean onStartJob(JobParameters params) {
         MyLog.i("castiel", "执行了onStartJob方法");
         boolean isLocalServiceWork = AppUtil.isServiceRunning(JobCastielService.this, "com.vincent.julie.service.JulieService");
-        boolean isRemoteServiceWork =  AppUtil.isServiceRunning(this, "com.castiel.service.RemoteCastielService");
        if(isLocalServiceWork){
            MyLog.d(JobCastielService.class.getSimpleName(),"JulieService is running");
        }else {
