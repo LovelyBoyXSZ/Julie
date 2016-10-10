@@ -33,6 +33,7 @@
 
 
         <!--Service 相关-->
+        <!--priority 配置Service优先级 1000为最高-->
         <service
             android:name=".service.JulieService"
             android:enabled="true"
