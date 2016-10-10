@@ -53,4 +53,6 @@ dependencies {
     compile 'com.facebook.fresco:webpsupport:0.12.0'
     //图片选择库，使用说明：github:https://github.com/crazycodeboy/TakePhoto https://github.com/crazycodeboy/TakePhoto/blob/master/README.md
     compile 'com.jph.takephoto:takephoto_library:3.0.0'
+    //google推荐的图片加载库，介绍：http://blog.csdn.net/fancylovejava/article/details/44747759
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
