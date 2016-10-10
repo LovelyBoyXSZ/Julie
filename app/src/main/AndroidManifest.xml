@@ -41,6 +41,13 @@
                 <!--<action android:name="START_ADDITIONAL_SERVICE" />-->
             <!--</intent-filter>-->
         </service>
+
+        <service android:name=".service.JobCastielService"
+            android:enabled="true"
+            android:persistent="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+
+        </service>
         <!--广播-->
         <receiver android:name=".reciver.BootBroadcastReceiver">
             <intent-filter>

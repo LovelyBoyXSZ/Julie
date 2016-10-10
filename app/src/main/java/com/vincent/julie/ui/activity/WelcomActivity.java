@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.vincent.julie.R;
 import com.vincent.julie.app.BaseActivity;
 import com.vincent.julie.app.Contants;
+import com.vincent.julie.service.JobCastielService;
 import com.vincent.julie.ui.fragment.MainFragment;
 import com.vincent.julie.util.SharedPreferencesUtil;
 import com.vincent.julie.util.TimeCount;
@@ -43,6 +44,9 @@ public class WelcomActivity extends BaseActivity {
     protected void findViewById() {
         setContentView(R.layout.act_welcom);
         hideTitle();
+
+        startService(new Intent(WelcomActivity.this, JobCastielService.class));
+
         shared=new SharedPreferencesUtil(WelcomActivity.this, Contants.WebUrl.CONFIG);
         isFristInstall=shared.getBoolean(Contants.FIRST_START);
         timer=new Timer();
