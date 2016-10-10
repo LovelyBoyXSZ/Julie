@@ -36,7 +36,8 @@
         <service
             android:name=".service.JulieService"
             android:enabled="true"
-            android:persistent="true">
+            android:persistent="true"
+            android:priority="1000">
         </service>
 
         <service android:name=".service.JobCastielService"
