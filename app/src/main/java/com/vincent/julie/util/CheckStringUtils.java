@@ -11,7 +11,6 @@ import android.text.TextUtils;
 
 import java.io.File;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * 项目名称：Julie
  * 类名：com.vincent.julie.util
- * 类描述：工具类 判断String
+ * 类描述：工具类 判断String Github地址：https://github.com/BestSingerInSiHui/CheckAllUtilsDemo
  * 创建人：Vincent QQ:1032006226
  * 创建时间：2016/10/11 15:47
  * 修改人：
