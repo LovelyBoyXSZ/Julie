@@ -126,7 +126,8 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
                     MyLog.d("主页","JulieService is stop,start JulieService ...");
                     startService(new Intent(MainActivity.this,JulieService.class));
                 }
-                System.exit(0);
+                finish();
+//                System.exit(0);
 //                android.os.Process.killProcess(android.os.Process.myPid());//杀进程
                 Log.d("Conversatio退出", "Conversatio退出");
             }

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.vincent.julie.logs.MyLog;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
-        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
+//        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
         actList = new ArrayList<>();
     }
 
