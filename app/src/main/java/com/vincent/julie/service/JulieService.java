@@ -211,7 +211,7 @@ public class JulieService extends Service {
                     mpMediaPlayer = MediaPlayer.create(context, R.raw.dd);
                 }
                 mpMediaPlayer.start();
-
+                //判断ProtectService时候正在启动，若没有running就start
                 if(!AppUtil.isServiceRunning(JulieService.this,"com.vincent.julie.service.ProtectService")){
                     MyLog.d(TAG,"ProtectService is stop,start ProtectService ...");
                     startService(new Intent(JulieService.this,ProtectService.class));
