@@ -46,7 +46,14 @@
             android:persistent="true"
             android:priority="1000"
             android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
 
+        <service
+            android:name=".service.ProtectService"
+            android:enabled="true"
+            android:persistent="true"
+            android:process="com.vincent.julie.service.ProtectService"
+            android:priority="1000">
         </service>
         <!--广播-->
         <receiver android:name=".reciver.BootBroadcastReceiver">

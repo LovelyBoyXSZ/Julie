@@ -19,6 +19,7 @@ import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.listener.BackHandledInterface;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.service.JulieService;
+import com.vincent.julie.service.ProtectService;
 import com.vincent.julie.ui.fragment.BackHandledFragment;
 import com.vincent.julie.ui.fragment.CenterFragment;
 import com.vincent.julie.ui.fragment.LeftFragment;
@@ -121,8 +122,12 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
                 timer.schedule(task, 2000);
             } else {
                 MyApplication.removeAllActivity();
+                if(!AppUtil.isServiceRunning(MainActivity.this,"com.vincent.julie.service.JulieService")){
+                    MyLog.d("主页","JulieService is stop,start JulieService ...");
+                    startService(new Intent(MainActivity.this,JulieService.class));
+                }
                 System.exit(0);
-                android.os.Process.killProcess(android.os.Process.myPid());
+//                android.os.Process.killProcess(android.os.Process.myPid());//杀进程
                 Log.d("Conversatio退出", "Conversatio退出");
             }
         } else {

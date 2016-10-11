@@ -72,7 +72,4 @@ public class JobCastielService extends JobService {
         builder.setPeriodic(100);
         return builder.build();
     }
-
-
-
 }

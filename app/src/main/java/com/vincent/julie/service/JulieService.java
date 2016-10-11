@@ -18,6 +18,7 @@ import android.util.Log;
 import com.vincent.julie.R;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.ui.activity.MainActivity;
+import com.vincent.julie.util.AppUtil;
 import com.vincent.julie.util.ScreenOpenCloseListener;
 import com.vincent.julie.util.SharedPreferencesUtil;
 import com.vincent.julie.util.SystemUtilts;
@@ -66,6 +67,7 @@ public class JulieService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        startService(new Intent(JulieService.this,ProtectService.class));
         MyLog.d(TAG, "onCreate");
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         sendNotification();
@@ -209,6 +211,13 @@ public class JulieService extends Service {
                     mpMediaPlayer = MediaPlayer.create(context, R.raw.dd);
                 }
                 mpMediaPlayer.start();
+
+                if(!AppUtil.isServiceRunning(JulieService.this,"com.vincent.julie.service.ProtectService")){
+                    MyLog.d(TAG,"ProtectService is stop,start ProtectService ...");
+                    startService(new Intent(JulieService.this,ProtectService.class));
+                }else {
+                    MyLog.d(TAG,"ProtectService is running");
+                }
             }
         }
     };
