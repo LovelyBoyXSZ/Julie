@@ -176,8 +176,8 @@ public class JulieService extends Service {
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSmallIcon(R.mipmap.ic_launcher)
                 .setTicker("通知")
-                .setContentTitle("3")//通知的标题
-                .setContentText("啊啊啊啊啊")//显示在界面上的内容
+                .setContentTitle("666")//通知的标题
+                .setContentText("来呀，互相伤害啊，弄死我啊")//显示在界面上的内容
                 .setContentIntent(pendingIntent);
         Notification mNotification = mBuilder.build();
 //        mNotification.icon = R.mipmap.et_app_icon;//设置通知  消息  图标
@@ -187,7 +187,7 @@ public class JulieService extends Service {
 //        mNotification.defaults = Notification.DEFAULT_VIBRATE; //设置显示通知时的默认的发声、震动、Light效果
         mNotification.defaults = Notification.DEFAULT_SOUND;//声音效果，不震动
         //设置发出消息的内容
-        mNotification.tickerText = "卧槽草草";//同志产生的时候发出的内容
+        mNotification.tickerText = "朕来了";//通知产生的时候发出的内容
         //设置发出通知的时间
         mNotification.when = System.currentTimeMillis();
         startForeground(notifyId, mNotification);//把该service创建为前台service
