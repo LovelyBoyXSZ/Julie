@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.vincent.julie.R;
 import com.vincent.julie.ui.activity.PhoneInfoActivity;
 import com.vincent.julie.ui.activity.QrScodeUtilsActivity;
+import com.vincent.julie.ui.activity.SettingActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +60,9 @@ public class RightFragmet extends BackHandledFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_mainfrg_setting:
-
+                Intent intent2 = new Intent(getActivity(), SettingActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
                 break;
             case R.id.ll_mainfrg_qr_code:
                 Intent intent1=new Intent(getActivity(), QrScodeUtilsActivity.class);
