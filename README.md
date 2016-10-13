@@ -6,4 +6,5 @@ Butterknife Injections）,android6.0之后的权限适配PermissionsDispatcher�
 网络请求工具，MD5加密解密等，别的啥也没有写了，
 2016年10月11日00:00:27
 添加用户手动清理app之后，JobService会在隔一段时间之后自动启动JulieService，此功能在我的手荣耀6，android6.0 EMUI4.0.1_H60-L02_6.10.1上面实现了无需权限开启自启，手动杀死之后自动启动，一键清理不清理，锁屏之后不被kill..在别的系统上可能就不一样了..
+添加跳转到华为手机管家主要页面的功能..
 
