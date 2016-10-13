@@ -4,8 +4,46 @@
     android:layout_height="match_parent">
 
     <Button
-        android:text="55"
+        android:text="跳转到华为权限管理页面"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2" />
+        android:id="@+id/btn_go_permission_act" />
+    <Button
+        android:id="@+id/btn_go_windows_permission"
+        android:text="跳转到华为悬浮窗管理权限页面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="跳转到华为受保护app页面"
+        android:id="@+id/btn_go_protect_act"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_go_self_motion_start"
+        android:text="跳转到华为自启动权限管理页面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_relevance_start"
+        android:text="跳转到华为关联启动权限管理页面"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="跳转到华为手机管家通知管理页面"
+        android:id="@+id/btn_go_notification_manager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="跳转到清理内存页面"
+        android:id="@+id/btn_go_clear_memory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="跳转到华为手机管家骚扰拦截页面"
+        android:id="@+id/btn_go_interception"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
