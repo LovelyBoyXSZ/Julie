@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>//相机
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>//读取外部存储
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
 
     <application
         android:name=".app.MyApplication"
@@ -39,7 +40,8 @@
             android:name=".service.JulieService"
             android:enabled="true"
             android:persistent="true"
-            android:priority="1000">
+            android:priority="1000"
+            android:exported="true">
         </service>
 
         <service android:name=".service.JobCastielService"

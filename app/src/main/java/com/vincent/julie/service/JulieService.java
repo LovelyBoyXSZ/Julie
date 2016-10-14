@@ -29,6 +29,7 @@ import java.util.Date;
 
 /**
  * Created by Vincent on 2016/7/15.
+ * about service please click url= http://blog.csdn.net/javazejian/article/details/52709857
  */
 public class JulieService extends Service {
     private static final String TAG = JulieService.class.getSimpleName();
