@@ -8,7 +8,7 @@ from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
 * 添加自定义View：AnFQNumEditText，限制输入字数
 
 ###第三次提交 commit log:增加对华为手机管家的各种跳转
-效果图：可看以前写blog:[华为跳转到权限管理页面]( http://blog.csdn.net/pkandroid/article/details/52014653 )
+效果图：可看以前写blog:[华为跳转到权限管理页面]( http://img.blog.csdn.net/20160724163235812 )
 </br>date: 2016年10月13日20:34:18
 * 跳转到华为手机管家内存清理页面
 * 跳转到华为手机管家权限管理页面
