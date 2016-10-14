@@ -5,14 +5,14 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="选择图片"
+        android:text="在底部弹出一个dialog"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_40"
         android:gravity="center"
         android:id="@+id/tv_choose_img" />
 
     <View
-        android:background="@color/common_color_gray"
+        android:background="@color/common_color_back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1px"/>
 

@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.vincent.julie.R;
 import com.vincent.julie.app.MyApplication;
+import com.vincent.julie.util.SystemUtilts;
 import com.vincent.julie.util.ToastUtils;
 import com.vincent.julie.view.AnFQNumEditText;
+import com.vincent.julie.view.BottomDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +49,7 @@ public class CenterFragment extends BackHandledFragment {
                 .setType(AnFQNumEditText.SINGULAR)//TextView显示类型(SINGULAR单数类型)(PERCENTAGE百分比类型)
                 .setLineColor("#3F51B5")//设置横线颜色
                 .show();
+        SystemUtilts.getReflectInstance(getContext(),"com.vincent.julie.entity.Food");
         return view;
     }
 
@@ -57,6 +60,8 @@ public class CenterFragment extends BackHandledFragment {
 
     @OnClick(R.id.tv_choose_img)
     public void onClick() {
-        ToastUtils.showSingleTextToast(MyApplication.getInstance(),"click");
+        //在底部弹出一个dialog
+        BottomDialog bottomDialog=BottomDialog.newInstance();
+        bottomDialog.show(getFragmentManager(),BottomDialog.class.getSimpleName());
     }
 }
