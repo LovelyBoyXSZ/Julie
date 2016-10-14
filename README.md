@@ -1,8 +1,14 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 
+###第四次提交 push log:增加一个自定义View，
+
+from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
+看到这个自定义View还不错，加进来，哈
+* 添加自定义View：AnFQNumEditText，限制输入字数
+
 ###第三次提交 commit log:增加对华为手机管家的各种跳转
-效果图：可看以前写blog:[华为跳转到权限管理页面]( http://blog.csdn.net/pkandroid/article/details/52014653 )
+效果图:我的blog： [ 跳转到华为手机管家悬浮窗管理页面 ]( http://blog.csdn.net/pkandroid/article/details/52014653 )
 </br>date: 2016年10月13日20:34:18
 * 跳转到华为手机管家内存清理页面
 * 跳转到华为手机管家权限管理页面
