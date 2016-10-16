@@ -1,6 +1,11 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 
+###第五次提交，收录了一个加密解密类
+原文地址：http://blog.csdn.net/gzejia/article/details/52755332
+看了下，还不错，收藏了
+
+
 ###第四次提交 push log:增加一个自定义View，
 
 from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
