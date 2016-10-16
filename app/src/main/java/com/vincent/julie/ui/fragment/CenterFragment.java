@@ -50,6 +50,8 @@ public class CenterFragment extends BackHandledFragment {
                 .setLineColor("#3F51B5")//设置横线颜色
                 .show();
         SystemUtilts.getReflectInstance(getContext(),"com.vincent.julie.entity.Food");
+        System.out.print("--------------------");
+        SystemUtilts.getReflectInstance(getContext(),"com.huawei.systemmanager.mainscreen.MainScreenActivity");
         return view;
     }
 
