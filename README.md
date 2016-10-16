@@ -3,7 +3,7 @@
 
 ###第五次提交，收录了一个加密解密类
 原文地址：http://blog.csdn.net/gzejia/article/details/52755332
-看了下，还不错，收藏了
+</br>看了下，还不错，收藏了
 
 
 ###第四次提交 push log:增加一个自定义View，
