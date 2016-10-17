@@ -1,6 +1,85 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 
+###第六次提交：增加对Retrolambda的支持，增加对RxJava的支持
+date:2016年10月17日12:54:03</br>
+Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139 
+</br>Demo:https://github.com/evant/gradle-retrolambda
+</br>RxJava介绍：http://gank.io/post/560e15be2dca930e00da1083#toc_1
+####Retrolambda使用集成：</br>
+  1、在外部build.gradle中的dependencies{}配置：
+```java
+   dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.3.0'//retrolambda 支持java1.8语法
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8' 
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+```
+  
+  2、在app的build.gradle的顶部加入：
+```java
+  apply plugin: 'com.android.application'
+  apply plugin: 'com.neenbedankt.android-apt'
+  apply plugin: 'me.tatarka.retrolambda' //retrolambda 插件声明 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+```
+</br>在app的build.gradle的android{}中配置： 
+```java  
+  retrolambda {
+        println("JAVA_HOME: " + System.getenv("JAVA_HOME"))
+        println("JAVA7_HOME: " + System.getenv("JAVA7_HOME"))
+        println("JAVA8_HOME: " + System.getenv("JAVA8_HOME"))
+        javaVersion JavaVersion.VERSION_1_7
+    }
+    /**
+     * 加入compileOptions,这会让IDE使用用JAVA8语法解析
+     */
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    /**
+     * 指定将源码编译的级别,，使用下列代码，会将代码编译到兼容1.6的字节码格式
+     */
+    retrolambda {
+        javaVersion JavaVersion.VERSION_1_6
+    }
+```
+  
+  设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+  3、在app的build.gradle中的dependencies{}引入：
+  
+```java
+  dependencies{
+  //Android开发之RxJava和RxAndroid RxJava说明:http://gank.io/post/560e15be2dca930e00da1083#toc_1
+    compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC4'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
+    //Retrolambda的使用 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+    compile 'me.tatarka:gradle-retrolambda:3.3.0'
+  }
+```
+ 
+####Retrolambda使用说明：
+```java
+        //使用Retrolambda插件之前的写法
+       tvRetrolambdaTest.setOnClickListener(new View.OnClickListener() {//使用Retrolambda插件之前的写法
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showSingleTextToast(RxJavaTestActivity.this,"Retrolambda学习，弹出来一个Toast");
+            }
+        });
+        //使用Retrolambda插件之后的写法
+        tvRetrolambdaTest.setOnClickListener(view -> ToastUtils.showSingleTextToast(this, "Retrolambda学习，弹出来一个Toast"));
+```
+####RxJava使用
+* RxJava的使用配置：
+</br>配置在上面...
+* RxJava的使用：
+</br>.....
+
+
+
 ###第五次提交，收录了一个加密解密类
 原文地址：http://blog.csdn.net/gzejia/article/details/52755332
 </br>看了下，还不错，收藏了
