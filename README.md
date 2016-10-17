@@ -2,7 +2,7 @@
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 
 ###第六次提交：增加对Retrolambda的支持，增加对RxJava的支持
-date:2016年10月17日12:54:03
+date:2016年10月17日12:54:03</br>
 Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139 
 </br>Demo:https://github.com/evant/gradle-retrolambda
 </br>RxJava介绍：http://gank.io/post/560e15be2dca930e00da1083#toc_1
@@ -23,11 +23,9 @@ Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139
   apply plugin: 'com.android.application'
   apply plugin: 'com.neenbedankt.android-apt'
   apply plugin: 'me.tatarka.retrolambda' //retrolambda 插件声明 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
-  ```
   
   </br>在app的build.gradle的android{}中配置： 
   
-  ```java
   retrolambda {
         println("JAVA_HOME: " + System.getenv("JAVA_HOME"))
         println("JAVA7_HOME: " + System.getenv("JAVA7_HOME"))
