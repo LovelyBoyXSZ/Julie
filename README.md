@@ -72,6 +72,7 @@ Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139
         //使用Retrolambda插件之后的写法
         tvRetrolambdaTest.setOnClickListener(view -> ToastUtils.showSingleTextToast(this, "Retrolambda学习，弹出来一个Toast"));
 ```
+####RxJava使用
 * RxJava的使用配置：
 </br>配置在上面...
 * RxJava的使用：
