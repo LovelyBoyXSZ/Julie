@@ -63,18 +63,17 @@ Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139
   ```
  
 ####Retrolambda使用说明：
-```java
-/* tvRetrolambdaTest.setOnClickListener(new View.OnClickListener() {//使用Retrolambda插件之前的写法
+
+        //使用Retrolambda插件之前的写法
+       tvRetrolambdaTest.setOnClickListener(new View.OnClickListener() {//使用Retrolambda插件之前的写法
             @Override
             public void onClick(View v) {
                 ToastUtils.showSingleTextToast(RxJavaTestActivity.this,"Retrolambda学习，弹出来一个Toast");
             }
-        });*/
+        });
         //使用Retrolambda插件之后的写法
         tvRetrolambdaTest.setOnClickListener(view -> ToastUtils.showSingleTextToast(this, "Retrolambda学习，弹出来一个Toast"));
-```
-后续效果研究中....
-
+        
 * RxJava的使用配置：
 </br>配置在上面有
 * RxJava的使用：
