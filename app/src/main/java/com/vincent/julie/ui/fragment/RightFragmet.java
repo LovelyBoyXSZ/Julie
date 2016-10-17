@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.vincent.julie.R;
 import com.vincent.julie.ui.activity.PhoneInfoActivity;
 import com.vincent.julie.ui.activity.QrScodeUtilsActivity;
+import com.vincent.julie.ui.activity.RxJavaTestActivity;
 import com.vincent.julie.ui.activity.SettingActivity;
 
 import butterknife.BindView;
@@ -34,7 +35,10 @@ public class RightFragmet extends BackHandledFragment {
     LinearLayout llMainfrgSetting;
     @BindView(R.id.ll_mainfrg_qr_code)
     LinearLayout llMainfrgQrCode;
+    @BindView(R.id.ll_rxjava)
+    LinearLayout llRxJava;
     private View view;
+
 
     @Nullable
     @Override
@@ -51,7 +55,8 @@ public class RightFragmet extends BackHandledFragment {
         return false;
     }
 
-    @OnClick({R.id.ll_mainfrg_phone_info, R.id.ll_mainfrg_setting,R.id.ll_mainfrg_qr_code})
+    @OnClick({R.id.ll_mainfrg_phone_info, R.id.ll_mainfrg_setting,R.id.ll_mainfrg_qr_code,
+    R.id.ll_rxjava})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_mainfrg_phone_info:
@@ -68,6 +73,11 @@ public class RightFragmet extends BackHandledFragment {
                 Intent intent1=new Intent(getActivity(), QrScodeUtilsActivity.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
+                break;
+            case R.id.ll_rxjava:
+                Intent rxJava=new Intent(getActivity(), RxJavaTestActivity.class);
+                rxJava.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(rxJava);
                 break;
         }
     }

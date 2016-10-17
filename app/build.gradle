@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda' //retrolambda 插件声明 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -16,6 +17,25 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    retrolambda {
+        println("JAVA_HOME: " + System.getenv("JAVA_HOME"))
+        println("JAVA7_HOME: " + System.getenv("JAVA7_HOME"))
+        println("JAVA8_HOME: " + System.getenv("JAVA8_HOME"))
+        javaVersion JavaVersion.VERSION_1_7
+    }
+    /**
+     * 加入compileOptions,这会让IDE使用用JAVA8语法解析
+     */
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    /**
+     * 指定将源码编译的级别,，使用下列代码，会将代码编译到兼容1.6的字节码格式
+     */
+    retrolambda {
+        javaVersion JavaVersion.VERSION_1_6
     }
 }
 
@@ -40,18 +60,18 @@ dependencies {
     //二维码扫描库
     compile project(path: ':libqrcode')
     //图片加载缓存库
-//    compile 'com.squareup.picasso:picasso:2.3.2'
-//    compile files('libs/universal-image-loader-1.9.3.jar')
-//    图片加载图、包括本地图片，网络图片
-//    compile 'com.facebook.fresco:fresco:0.13.0'
-//    compile 'com.facebook.fresco:animated-base-support:0.12.0'
+    //    compile 'com.squareup.picasso:picasso:2.3.2'
+    //    compile files('libs/universal-image-loader-1.9.3.jar')
+    //    图片加载图、包括本地图片，网络图片
+    //    compile 'com.facebook.fresco:fresco:0.13.0'
+    //    compile 'com.facebook.fresco:animated-base-support:0.12.0'
     // 在 API < 14 上的机器支持 WebP 时，需要添加
-//    compile 'com.facebook.fresco:animated-gif:0.12.0'
+    //    compile 'com.facebook.fresco:animated-gif:0.12.0'
     // 支持 GIF 动图，需要添加
-//    compile 'com.facebook.fresco:animated-webp:0.12.0'
+    //    compile 'com.facebook.fresco:animated-webp:0.12.0'
     // 支持 WebP （静态图+动图），需要添加
-//    compile 'com.facebook.fresco:webpsupport:0.12.0'
-//    compile 'com.facebook.fresco:webpsupport:0.12.0'
+    //    compile 'com.facebook.fresco:webpsupport:0.12.0'
+    //    compile 'com.facebook.fresco:webpsupport:0.12.0'
     //图片选择库，使用说明：github:https://github.com/crazycodeboy/TakePhoto https://github.com/crazycodeboy/TakePhoto/blob/master/README.md
     compile 'com.jph.takephoto:takephoto_library:3.0.0'
     //glide比Picasso占用内存更小，加载速度更快，默认图片加载的质量不如Picasso glide默认为RGB565  Picasso默认为ARGB8888
@@ -60,5 +80,9 @@ dependencies {
     //            .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
     //            .into(ivImg);
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
+    //Android开发之RxJava和RxAndroid RxJava说明:http://gank.io/post/560e15be2dca930e00da1083#toc_1
+    compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC4'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.0-RC1'
+    //Retrolambda的使用 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+    compile 'me.tatarka:gradle-retrolambda:3.3.0'
 }

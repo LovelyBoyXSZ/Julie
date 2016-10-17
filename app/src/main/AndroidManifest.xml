@@ -32,6 +32,7 @@
         <activity android:name=".ui.activity.PhoneInfoActivity"/>
         <activity android:name=".ui.activity.QrScodeUtilsActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.RxJavaTestActivity"/>
 
 
         <!--Service 相关-->

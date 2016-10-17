@@ -11,6 +11,7 @@
         android:weightSum="4">
 
             <LinearLayout
+                android:id="@+id/ll_rxjava"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_5"
-                    android:text="FFf" />
+                    android:text="RxJava学习" />
 
             </LinearLayout>
 
