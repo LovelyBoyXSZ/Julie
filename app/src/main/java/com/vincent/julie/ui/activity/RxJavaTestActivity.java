@@ -10,9 +10,13 @@ import com.vincent.julie.app.BaseActivity;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.util.ToastUtils;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -92,6 +96,7 @@ public class RxJavaTestActivity extends BaseActivity {
             public void onNext(String value) {
                 //相当于 new OnClickListener里面的onClick() / onEvent()
                 MyLog.d(OBSERVER_TAG,"onNext（）方法调用了");
+
             }
 
             @Override
@@ -107,6 +112,7 @@ public class RxJavaTestActivity extends BaseActivity {
                 MyLog.d(OBSERVER_TAG,"");
             }
         };
+
     }
 
 
