@@ -10,6 +10,7 @@ import com.vincent.julie.R;
 import com.vincent.julie.app.BaseActivity;
 import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.retrofit.WeatherApiService;
+import com.vincent.julie.retrofit.model.WeatherEntity;
 import com.vincent.julie.retrofit.response.GetWeatherData;
 import com.vincent.julie.util.ToastUtils;
 
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.RxJavaCallAdapterFactory;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -82,6 +84,14 @@ public class RetrofitActivity extends BaseActivity {
 
     @OnClick(R.id.btn_get_weather)
     public void onClick() {
+//        Observable observable = Observable.create(new Observable.OnSubscribe<WeatherEntity>() {
+//
+//            @Override
+//            public void call(Subscriber<? super WeatherEntity> subscriber) {
+//
+//            }
+//        });
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -89,7 +99,7 @@ public class RetrofitActivity extends BaseActivity {
                 .build();
 
         WeatherApiService weatherApiService = retrofit.create(WeatherApiService.class);
-
+//        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
         weatherApiService.getWeatherData("2", "深圳", "77a262c554de40916edc78858221b4a9")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
