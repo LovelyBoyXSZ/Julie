@@ -47,8 +47,8 @@ Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139
     }
 ```
   
-  设置说明：http://www.open-open.com/lib/view/open1433898197176.html
-  3、在app的build.gradle中的dependencies{}引入：
+  </br>设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+  </br>3、在app的build.gradle中的dependencies{}引入：
   
 ```java
   dependencies{
