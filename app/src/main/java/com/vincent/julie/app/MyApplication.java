@@ -41,8 +41,9 @@ public class MyApplication extends Application {
 //        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
         actList = new ArrayList<>();
         MyLog.d("设备Id", ExampleUtil.getDeviceId(this));
-        MyLog.d("设备注册ID",JPushInterface.getRegistrationID(getApplicationContext()));
-        MyLog.d("UDID",JPushInterface.getUdid(this));
+        MyLog.d("RegistrationID",JPushInterface.getRegistrationID(this));
+        System.out.print(JPushInterface.getRegistrationID(this));
+        MyLog.d("UDID",JPushInterface.getUdid(this));//设备Id==Uid
         MyLog.d("AppKey",ExampleUtil.getAppKey(this));
         MyLog.d("IMEI",ExampleUtil.getImei(this,"IMEI获取失败"));
     }

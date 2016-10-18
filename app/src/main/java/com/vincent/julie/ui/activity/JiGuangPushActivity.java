@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import com.vincent.julie.R;
 import com.vincent.julie.app.BaseActivity;
+import com.vincent.julie.app.MyApplication;
+import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.util.ExampleUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 项目名称：Julie
@@ -94,6 +97,7 @@ public class JiGuangPushActivity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
         registerMessageReceiver();//注册广播
+        MyLog.d("RegistrationID", JPushInterface.getRegistrationID(MyApplication.getInstance()));
     }
 
     public class MessageReceiver extends BroadcastReceiver {
