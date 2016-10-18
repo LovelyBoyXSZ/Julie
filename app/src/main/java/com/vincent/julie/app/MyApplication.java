@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import com.lzy.okgo.OkGo;
 import com.vincent.julie.logs.MyLog;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        OkGo.init(this);//使用OkGo必须在MyApplication中初始化
         app = this;
 //        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
         actList = new ArrayList<>();

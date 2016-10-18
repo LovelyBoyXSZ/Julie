@@ -3,12 +3,38 @@
     package="com.vincent.julie">
 
     <uses-permission android:name="android.permission.READ_SMS"/>//读取信息
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>//读取手机状态
     <uses-permission android:name="android.permission.CAMERA"/>//相机
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>//读取外部存储
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
     <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />//读取手机状态
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />//读取外部存储
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
 
     <application
         android:name=".app.MyApplication"
@@ -35,6 +61,7 @@
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.RxJavaTestActivity"/>
         <activity android:name=".ui.activity.RetrofitActivity"/>
+        <activity android:name=".ui.activity.OkGoActivity"/>
 
 
         <!--Service 相关-->

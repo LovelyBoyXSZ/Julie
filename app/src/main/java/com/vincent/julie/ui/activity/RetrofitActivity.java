@@ -57,6 +57,7 @@ public class RetrofitActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             if(msg.arg1==0){
                 WeatherEntity weatherEntity=(WeatherEntity) msg.obj;
+                ToastUtils.showSingleTextToast(MyApplication.getInstance(),weatherEntity.getReason());
                 tvShowWeather.setText(weatherEntity.getResult().getToday().getWeek());
             }
         }
@@ -109,7 +110,6 @@ public class RetrofitActivity extends BaseActivity {
                     Response<WeatherEntity> bodayResponse=call.execute();
                     weatherEntity=bodayResponse.body();
                     MyLog.d("data",weatherEntity.getReason()+","+weatherEntity.getError_code()+","+weatherEntity.getResult().toString());
-                    ToastUtils.showSingleTextToast(MyApplication.getInstance(),weatherEntity.getReason());
                     WeatherEntity.result.today today=weatherEntity.getResult().getToday();
                     MyLog.d("today",today.toString());
                     Message message=Message.obtain();
@@ -124,8 +124,6 @@ public class RetrofitActivity extends BaseActivity {
                 }
             }
         }.start();
-
-
 
     }
 

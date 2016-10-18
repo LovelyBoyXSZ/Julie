@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
+import com.vincent.julie.ui.activity.OkGoActivity;
 import com.vincent.julie.ui.activity.PhoneInfoActivity;
 import com.vincent.julie.ui.activity.QrScodeUtilsActivity;
 import com.vincent.julie.ui.activity.RetrofitActivity;
@@ -41,6 +42,8 @@ public class RightFragmet extends BackHandledFragment {
     LinearLayout llRxJava;
     @BindView(R.id.tv_retrofit)
     TextView tvRetrofit;
+    @BindView(R.id.tv_okgo)
+    TextView tvOkGo;
     private View view;
 
 
@@ -60,7 +63,7 @@ public class RightFragmet extends BackHandledFragment {
     }
 
     @OnClick({R.id.ll_mainfrg_phone_info, R.id.ll_mainfrg_setting,R.id.ll_mainfrg_qr_code,
-    R.id.ll_rxjava,R.id.tv_retrofit})
+    R.id.ll_rxjava,R.id.tv_retrofit,R.id.tv_okgo})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_mainfrg_phone_info:
@@ -87,6 +90,11 @@ public class RightFragmet extends BackHandledFragment {
                 Intent retrofit=new Intent(getActivity(), RetrofitActivity.class);
                 retrofit.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(retrofit);
+                break;
+            case R.id.tv_okgo:
+                Intent okgo=new Intent(getActivity(), OkGoActivity.class);
+                okgo.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(okgo);
                 break;
             default:
                 break;
