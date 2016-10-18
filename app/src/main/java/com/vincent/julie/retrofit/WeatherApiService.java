@@ -1,10 +1,12 @@
 package com.vincent.julie.retrofit;
 
 import com.vincent.julie.retrofit.model.WeatherEntity;
+import com.vincent.julie.retrofit.response.GetWeatherData;
 
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import rx.Observable;
 
 
 /**
@@ -21,7 +23,11 @@ import retrofit.http.Query;
 
 public interface WeatherApiService {
 //天气地址：http://v.juhe.cn/weather/index?format=2&cityname=深圳&key=77a262c554de40916edc78858221b4a9
+/*
     @GET("weather/index")
-    Call<WeatherEntity> getWeatherData(@Query("format") String format, @Query("cityname" )String cityname, @Query("key")String appKey);
+    Observable<GetWeatherData> getWeatherData(@Query("format") String format, @Query("cityname" )String cityname, @Query("key")String appKey);
+*/
+    @GET("weather/index")
+    Call<WeatherEntity> getWeatherData(@Query("format")String format, @Query("cityname")String cityname, @Query("key")String appKey);
 
 }

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>//读取外部存储
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
     <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".app.MyApplication"
