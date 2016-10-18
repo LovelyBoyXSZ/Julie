@@ -8,9 +8,12 @@ import android.view.WindowManager;
 
 import com.lzy.okgo.OkGo;
 import com.vincent.julie.logs.MyLog;
+import com.vincent.julie.util.ExampleUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by Vincent on 2016/9/26.
@@ -32,9 +35,16 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         OkGo.init(this);//使用OkGo必须在MyApplication中初始化
+        JPushInterface.setDebugMode(true);//测试模式，打开调试日志
+        JPushInterface.init(getApplicationContext());
         app = this;
 //        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
         actList = new ArrayList<>();
+        MyLog.d("设备Id", ExampleUtil.getDeviceId(this));
+        MyLog.d("设备注册ID",JPushInterface.getRegistrationID(getApplicationContext()));
+        MyLog.d("UDID",JPushInterface.getUdid(this));
+        MyLog.d("AppKey",ExampleUtil.getAppKey(this));
+        MyLog.d("IMEI",ExampleUtil.getImei(this,"IMEI获取失败"));
     }
 
     /**

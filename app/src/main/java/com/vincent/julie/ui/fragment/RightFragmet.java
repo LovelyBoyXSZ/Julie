@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
+import com.vincent.julie.ui.activity.JiGuangPushActivity;
 import com.vincent.julie.ui.activity.OkGoActivity;
 import com.vincent.julie.ui.activity.PhoneInfoActivity;
 import com.vincent.julie.ui.activity.QrScodeUtilsActivity;
@@ -44,6 +45,8 @@ public class RightFragmet extends BackHandledFragment {
     TextView tvRetrofit;
     @BindView(R.id.tv_okgo)
     TextView tvOkGo;
+    @BindView(R.id.tv_jiguang_push)
+    TextView tvJiGuangPush;
     private View view;
 
 
@@ -63,7 +66,7 @@ public class RightFragmet extends BackHandledFragment {
     }
 
     @OnClick({R.id.ll_mainfrg_phone_info, R.id.ll_mainfrg_setting,R.id.ll_mainfrg_qr_code,
-    R.id.ll_rxjava,R.id.tv_retrofit,R.id.tv_okgo})
+    R.id.ll_rxjava,R.id.tv_retrofit,R.id.tv_okgo,R.id.tv_jiguang_push})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_mainfrg_phone_info:
@@ -95,6 +98,11 @@ public class RightFragmet extends BackHandledFragment {
                 Intent okgo=new Intent(getActivity(), OkGoActivity.class);
                 okgo.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(okgo);
+                break;
+            case R.id.tv_jiguang_push:
+                Intent jiGuang=new Intent(getActivity(), JiGuangPushActivity.class);
+                jiGuang.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(jiGuang);
                 break;
             default:
                 break;

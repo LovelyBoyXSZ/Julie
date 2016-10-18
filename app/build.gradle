@@ -37,6 +37,12 @@ android {
     retrolambda {
         javaVersion JavaVersion.VERSION_1_6
     }
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
 
 dependencies {
@@ -88,12 +94,18 @@ dependencies {
     //retrofit网络访问框架
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-//    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+    //    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
     //OkGo网络访问框架
-    compile 'com.lzy.net:okgo:+'        //版本号使用 + 可以自动引用最新版  okgo使用的okhttp的版本是最新的 3.4.1 版本，和以前的 2.x 的版本可能会存在冲突。
-    compile 'com.lzy.net:okrx:+'        //版本号使用 + 可以自动引用最新版 okrx是基于RxJava和RxAndroid的扩展,如果不需要可以不必引入
-    compile 'com.lzy.net:okserver:+'    //版本号使用 + 可以自动引用最新版 okserver是对okgo的扩展，统一了下载管理和上传管理，对项目有需要做统一下载的可以考虑使用该扩展，不需要的可以直接使用okgo即可。
+    compile 'com.lzy.net:okgo:+'
+    //版本号使用 + 可以自动引用最新版  okgo使用的okhttp的版本是最新的 3.4.1 版本，和以前的 2.x 的版本可能会存在冲突。
+    compile 'com.lzy.net:okrx:+'
+    //版本号使用 + 可以自动引用最新版 okrx是基于RxJava和RxAndroid的扩展,如果不需要可以不必引入
+    compile 'com.lzy.net:okserver:+'
+    //版本号使用 + 可以自动引用最新版 okserver是对okgo的扩展，统一了下载管理和上传管理，对项目有需要做统一下载的可以考虑使用该扩展，不需要的可以直接使用okgo即可。
     //对于缓存模式使用，需要与返回对象相关的所有javaBean必须实现Serializable接口，否者会报NotSerializableException。
     //使用缓存时，如果不指定cacheKey，默认是用url带参数的全路径名为cacheKey。
     //使用该网络框架时，必须要在 Application 中做初始化 OkGo.init(this);。
+    //极光推送
+    //    compile 'cn.jiguang:jpush:2.1.8'
+    compile files('libs/jpush-android-2.2.0.jar')
 }
