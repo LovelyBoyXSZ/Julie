@@ -287,7 +287,7 @@ from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
 date: 2016年10月11日00:00:27
 * 添加类：JobCastielService 此类的onStart和onStop方法 作用：在杀掉Service之后启动定时任务启动JulieService，后台保活 测试：在荣耀6 android6.0 EMUI4.0.1_H60-L02_6.10.1可实现开机就运行，直到关机，荣耀8不行，会认为是关联启动
 
-###
+###初次概况
 date: 2016年9月28 15:22:55
 * MD5加密工具类
 * 第一次进入引导页
