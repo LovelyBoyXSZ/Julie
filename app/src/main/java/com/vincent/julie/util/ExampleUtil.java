@@ -95,7 +95,12 @@ public class ExampleUtil {
 			}
 		}).start();
     }
-    
+
+    /**
+     * 判断网络是否连接
+     * @param context
+     * @return true有网 false 没网
+     */
     public static boolean isConnected(Context context) {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = conn.getActiveNetworkInfo();

@@ -5,10 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.vincent.julie.R;
+import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.ui.activity.JiGuangPushActivity;
 import com.vincent.julie.ui.activity.MainActivity;
+import com.vincent.julie.ui.activity.PushMessageActivity;
 import com.vincent.julie.util.ExampleUtil;
+import com.vincent.julie.util.NotificationUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +50,10 @@ public class JiGuangPushReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             MyLog.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
             processCustomMessage(context, bundle);
-
+            String content=bundle.getString(JPushInterface.EXTRA_MESSAGE);//这是自定义消息
+            //// TODO: 2016/10/19  
+            NotificationUtils.sendNotification(MyApplication.getInstance(),"com.vincent.julie.ui.activity.PushMessageActivity", R.mipmap.ic_launcher,"Julie",content);
+            
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             MyLog.d(TAG, "[MyReceiver] 接收到推送下来的通知");
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
@@ -56,7 +63,7 @@ public class JiGuangPushReceiver extends BroadcastReceiver {
             MyLog.d(TAG, "[MyReceiver] 用户点击打开了通知");
 
             //打开自定义的Activity
-            Intent i = new Intent(context, MainActivity.class);
+            Intent i = new Intent(context, PushMessageActivity.class);
             i.putExtras(bundle);
             //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
@@ -113,13 +120,13 @@ public class JiGuangPushReceiver extends BroadcastReceiver {
         if (JiGuangPushActivity.isForeground) {
             String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-            Intent msgIntent = new Intent(JiGuangPushActivity.MESSAGE_RECEIVED_ACTION);
-            msgIntent.putExtra(JiGuangPushActivity.KEY_MESSAGE, message);
+            Intent msgIntent = new Intent(PushMessageActivity.MESSAGE_RECEIVED_ACTION);
+            msgIntent.putExtra(PushMessageActivity.KEY_MESSAGE, message);
             if (!ExampleUtil.isEmpty(extras)) {
                 try {
                     JSONObject extraJson = new JSONObject(extras);
                     if (null != extraJson && extraJson.length() > 0) {
-                        msgIntent.putExtra(JiGuangPushActivity.KEY_EXTRAS, extras);
+                        msgIntent.putExtra(PushMessageActivity.KEY_EXTRAS, extras);
                     }
                 } catch (JSONException e) {
 

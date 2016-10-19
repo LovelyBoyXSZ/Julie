@@ -107,5 +107,5 @@ dependencies {
     //使用该网络框架时，必须要在 Application 中做初始化 OkGo.init(this);。
     //极光推送
     //    compile 'cn.jiguang:jpush:2.1.8'
-    compile files('libs/jpush-android-2.2.0.jar')
+//    compile files('libs/jpush-android-2.2.0.jar')
 }

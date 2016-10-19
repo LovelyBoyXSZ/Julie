@@ -3,17 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <Button
-        android:layout_marginLeft="@dimen/size_10"
-        android:id="@+id/btn_get_registration_id"
-        android:text="获取RegistrationId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <TextView
-        android:id="@+id/tv_show_registration_id"
+        android:id="@+id/tv_show_push_msg"
         android:padding="@dimen/size_10"
+        android:hint="显示收到的消息"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
 </LinearLayout>

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
@@ -13,9 +15,12 @@ import com.vincent.julie.app.BaseActivity;
 import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.util.ExampleUtil;
+import com.vincent.julie.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.android.api.JPushInterface;
 
 /**
@@ -30,31 +35,26 @@ import cn.jpush.android.api.JPushInterface;
  * 十月
  */
 
-public class JiGuangPushActivity extends BaseActivity {
+public class JiGuangPushActivity extends InstrumentedActivity {
 
     public static boolean isForeground = false;
-    @BindView(R.id.tv_accept_msg)
-    TextView tvAcceptMsg;
+    @BindView(R.id.btn_get_registration_id)
+    Button btnGetRegistrationId;
+    @BindView(R.id.tv_show_registration_id)
+    TextView tvShowRegistrationId;
+
 
     @Override
-    protected void titleBarRightClick() {
-
-    }
-
-    @Override
-    protected void findViewById() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
         setContentView(R.layout.act_jiguang_push);
-        setTitleText("极光推送Test");
-    }
-
-    @Override
-    protected void setListener() {
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
+        JPushInterface.init(this);
+        JPushInterface.resumePush(this);
+//        JPushInterface.getStringTags()
+        MyLog.d("RegistrationID", JPushInterface.getRegistrationID(MyApplication.getInstance()));
+        MyLog.d("JpushInterface","init()和resumePush()");
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -70,57 +70,22 @@ public class JiGuangPushActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        unregisterReceiver(mMessageReceiver);
-        super.onDestroy();
-    }
 
-    //for receive customer msg from jpush server
-    private MessageReceiver mMessageReceiver;
-    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_MESSAGE = "message";
-    public static final String KEY_EXTRAS = "extras";
-
-    public void registerMessageReceiver() {
-        mMessageReceiver = new MessageReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(MESSAGE_RECEIVED_ACTION);
-        registerReceiver(mMessageReceiver, filter);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-        registerMessageReceiver();//注册广播
-        MyLog.d("RegistrationID", JPushInterface.getRegistrationID(MyApplication.getInstance()));
-    }
-
-    public class MessageReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
-                String messge = intent.getStringExtra(KEY_MESSAGE);
-                String extras = intent.getStringExtra(KEY_EXTRAS);
-                StringBuilder showMsg = new StringBuilder();
-                showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
-                if (!ExampleUtil.isEmpty(extras)) {
-                    showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
-                }
-                setCostomMsg(showMsg.toString());
-            }
+    @OnClick(R.id.btn_get_registration_id)
+    public void onClick() {
+        if(ExampleUtil.isConnected(this)){
+            MyLog.d("已连接");
+            MyLog.d("APP Key",ExampleUtil.getAppKey(this));
+        }else {
+            MyLog.d("未连接");
         }
-    }
-
-    private void setCostomMsg(String msg) {
-        if (null != tvAcceptMsg) {
-            tvAcceptMsg.setText(msg);
-//            tvAcceptMsg.setVisibility(View.VISIBLE);
+        String rid = JPushInterface.getRegistrationID(getApplicationContext());
+        if (!rid.isEmpty()) {
+            tvShowRegistrationId.setText("RegId:" + rid);
+            MyLog.d("registrationId",rid);
+        } else {
+            MyLog.d("It's error for get registration...");
+            ToastUtils.showSingleTextToast(MyApplication.getInstance(),"Get registration fail, JPush init failed!");
         }
     }
 
