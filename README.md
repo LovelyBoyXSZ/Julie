@@ -6,6 +6,7 @@ date:2016年10月19日12:56:56
 </br>集成平台：Android
 </br>jdk：java 1.8
 </br>开发环境：AndroidStudio2.2.1
+</br>效果：http://blog.csdn.net/pkandroid/article/details/52858546
 </br>使用极光推送需要在极光推送官网注册，创建App，获取AppKey(AppKey=xxxxxxxxxxxxxxxxxxxxxxxxx)
 </br>把下载的资源中的libs全部复制到Julie/app下面,需要在julie\app\build.gradle里面的android{}中配置：
 ```java
