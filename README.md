@@ -531,8 +531,8 @@ date: 2016年9月28 15:22:55
 * 适配Android6.0之后的权限机制：permissionsdispatcher插件（不管用户是否采取哪种操作，都能给用户以提示）
 * 底部4个tab切换，监听Fragment的返回事件，判定首个Fragment才能退出，类似京东首页退出效果，退出方式为2s内连点两下
 * butterknife(8.4.0注解，使用方式：在setContentView的布局上右键#Generate，然后点击Generate Butterknife Injections）
-* JulieService会在后台循环播放一段无声MP3来保证JulieService不被系统kill，此方法在华为手机中估计是都能实现的，而且还能避免锁屏之后被系统杀死！ps:最好是能加入到华为手机管家受保护应用中去，那样效果更好啦
 * 手机信息收集：手机厂商、手机型号、SDK版本、系统版本、基带版本、内核版本、内部版本、cpu信息、屏幕宽度、屏幕高度、all运行内存、可用运行内存、IMEI号码、内置SD卡可用大小、内置SD卡大小、屏幕分辨率、是否root
+* JulieService会在后台循环播放一段无声MP3来保证JulieService不被系统kill，此方法在华为手机中估计是都能实现的，而且还能避免锁屏之后被系统杀死！ps:最好是能加入到华为手机管家受保护应用中去，那样效果更好啦,更多关于后台保活地址：http://www.jianshu.com/p/d791bbede02c
 
 
 
