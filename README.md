@@ -1,7 +1,7 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 
-###第六次提交：增加对Retrolambda的支持，增加对RxJava的支持,增加Retrofit网络框架支持
+###增加对Retrolambda的支持，增加对RxJava的支持,增加Retrofit网络框架支持
 date:2016年10月17日12:54:03</br>
 Retrolambda介绍：http://blog.csdn.net/cai_iac/article/details/50846139 
 </br>Demo:https://github.com/evant/gradle-retrolambda
@@ -259,18 +259,18 @@ if(msg.arg1==0){
 ```
 
 
-###第五次提交，收录了一个加密解密类
+###收录了一个加密解密类
 原文地址：http://blog.csdn.net/gzejia/article/details/52755332
 </br>看了下，还不错，收藏了
 
 
-###第四次提交 push log:增加一个自定义View，
+###push log:增加一个自定义View，
 
 from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
 看到这个自定义View还不错，加进来，哈
 * 添加自定义View：AnFQNumEditText，限制输入字数
 
-###第三次提交 commit log:增加对华为手机管家的各种跳转
+###commit log:增加对华为手机管家的各种跳转
 效果图:我的blog： [ 跳转到华为手机管家悬浮窗管理页面 ]( http://blog.csdn.net/pkandroid/article/details/52014653 )
 </br>date: 2016年10月13日20:34:18
 * 跳转到华为手机管家内存清理页面
@@ -282,12 +282,12 @@ from:http://gold.xitu.io/post/57fb97412e958a005596cab9 </br>
 * 跳转到华为手机管家自启动权限管理页面
 * 跳转到华为手机管家 关联启动权限管理页面（失败，系统禁止）
 
-###第二次提交commit log: JobCastielService 定时任务
+###commit log: JobCastielService 定时任务
 
 date: 2016年10月11日00:00:27
 * 添加类：JobCastielService 此类的onStart和onStop方法 作用：在杀掉Service之后启动定时任务启动JulieService，后台保活 测试：在荣耀6 android6.0 EMUI4.0.1_H60-L02_6.10.1可实现开机就运行，直到关机，荣耀8不行，会认为是关联启动
 
-###首次代码提交：主要功能如下：
+###初次概况
 date: 2016年9月28 15:22:55
 * MD5加密工具类
 * 第一次进入引导页
