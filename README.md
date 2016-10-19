@@ -18,7 +18,7 @@ date:2016年10月19日12:56:56
     }
 }
 ```
-</br>在项目的AndroidMainfest.xml中配置（配置不全可能会导致获取不到RegistrationId）：
+</br>在项目的AndroidMainfest.xml中配置（配置不全可能会导致获取不到RegistrationId，推送失败）：
 ```java
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
