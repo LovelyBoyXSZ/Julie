@@ -89,6 +89,23 @@
             android:process="com.vincent.julie.service.ProtectService"
             android:priority="1000">
         </service>
+
+        <service
+            android:name=".service.KeepLiveService"
+            android:enabled="true"
+            android:persistent="true"
+            android:process="com.vincent.julie.service.KeepLiveService"
+            android:priority="1000">
+        </service>
+
+        <service
+            android:name=".service.StopNotifService"
+            android:enabled="true"
+            android:persistent="true"
+            android:process="com.vincent.julie.service.StopNotifService"
+            android:priority="1000">
+        </service>
+
         <!--广播-->
         <receiver android:name=".reciver.BootBroadcastReceiver">
             <intent-filter>
@@ -132,6 +149,7 @@
         <service
             android:name="cn.jpush.android.service.PushService"
             android:enabled="true"
+            android:process="com.vincent.julie.jpush.PushService"
             android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />

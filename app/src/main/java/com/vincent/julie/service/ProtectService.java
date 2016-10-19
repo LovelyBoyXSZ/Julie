@@ -1,6 +1,8 @@
 package com.vincent.julie.service;
 
 import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +11,7 @@ import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -41,7 +44,7 @@ public class ProtectService extends Service{
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        MyLog.d(TAG, "onStartCommand");
+       MyLog.d("ProjectService","onStartCommand()");
         return START_STICKY;
     }
 

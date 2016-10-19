@@ -69,6 +69,7 @@ public class JulieService extends Service {
     public void onCreate() {
         super.onCreate();
         startService(new Intent(JulieService.this,ProtectService.class));
+//        startService(new Intent(JulieService.this,KeepLiveService.class));
         MyLog.d(TAG, "onCreate");
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         sendNotification();
@@ -164,6 +165,12 @@ public class JulieService extends Service {
         unregisterReceiver(mBR);
         unregisterReceiver(receiver);
         mpMediaPlayer = null;
+    }
+
+    //释放资源
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
     }
 
     /**
