@@ -224,11 +224,11 @@ date:2016年10月19日12:56:56
 </ba>4、PushMessageActivity类，自定义消息处理类，发送自定义消息的时候，点击通知栏的消息，会跳转到此类，查看具体消息详情，只是做了个例子，处理不多，</ba>消息采用Intent携带数据跳转
 #####添加NotificationUtils工具类，传递参数，发送通知到顶部通知栏
 </ba>void sendNotification(Context context, String activity, int imgId, String title, String msg);
-</br>context，上下文对象
-</br> activity 点击消息此跳转到Activity，的传入Activity必须包含的完整包名、类型，具体实现为反射
-</br> imgId 通知的图标
-</br> title 通知的标题
-</br> msg 通知的内容
+</br>context：上下文对象
+</br> activity：点击消息此跳转到Activity，的传入Activity必须包含的完整包名、类型，具体实现为反射
+</br> imgId：通知的图标
+</br> title：通知的标题
+</br> msg：通知的内容
 
 ###增加对Retrolambda的支持，增加对RxJava的支持,增加Retrofit网络框架支持
 date:2016年10月17日12:54:03</br>
