@@ -31,7 +31,7 @@ date:2016年10月19日12:56:56
 
     <permission
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature" />//如果没有配置此权限会导致收不到推送
 
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
@@ -121,7 +121,6 @@ date:2016年10月19日12:56:56
 
         <!--极光推送配置-->
 
-
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
@@ -190,7 +189,7 @@ date:2016年10月19日12:56:56
 
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
-            android:name=".reciver.JiGuangPushReceiver"
+            android:name=".reciver.JiGuangPushReceiver"//自定义的推送消息处理类
             android:exported="false"
             android:enabled="true">
             <intent-filter>
