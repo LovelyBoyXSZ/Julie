@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,6 +46,7 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
     private LinearLayout llChat, llFriends, llContacts, llSettings;
     private ImageView ivChat, ivFriends, ivContacts, ivSettings;
     private TextView tvChat, tvFriends, tvContacts, tvSettings;
+    private Button btnMenu;
     private BackHandledFragment mBackHandledFragment;
     private List<Fragment> frgList = new ArrayList<>();
     private FragmentSwitchTool tool;
@@ -152,6 +154,14 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
         tvFriends = (TextView) findViewById(R.id.tvFriends);
         tvContacts = (TextView) findViewById(R.id.tvContacts);
         tvSettings = (TextView) findViewById(R.id.tvSettings);
+
+        btnMenu=(Button)findViewById(R.id.button);
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showSingleTextToast(MyApplication.getInstance(),"Click");
+            }
+        });
     }
 
 

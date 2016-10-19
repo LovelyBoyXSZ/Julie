@@ -78,6 +78,12 @@ public class SettingActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
+    @Override
     public void onClick(View v) {
 
     }

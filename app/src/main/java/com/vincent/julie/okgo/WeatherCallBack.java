@@ -1,6 +1,7 @@
 package com.vincent.julie.okgo;
 
 import com.lzy.okgo.callback.AbsCallback;
+import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.retrofit.model.WeatherEntity;
 import com.vincent.julie.util.ToastUtils;
@@ -27,6 +28,7 @@ public class WeatherCallBack<WeathEntity> extends AbsCallback<WeatherEntity> {
     public void onSuccess(WeatherEntity entity, Call call, Response response) {
         if(response.equals("200")){
             MyLog.d("response","响应成功");
+            ToastUtils.showSingleTextToast(MyApplication.getInstance(),"响应成功");
         }
     }
 

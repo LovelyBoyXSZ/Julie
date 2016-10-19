@@ -35,7 +35,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         OkGo.init(this);//使用OkGo必须在MyApplication中初始化
-        JPushInterface.setDebugMode(true);//测试模式，打开调试日志
+        if(Contants.LOG_SWITCH){//跟随app日志开关
+            JPushInterface.setDebugMode(true);//测试模式，打开调试日志
+        }else {
+            JPushInterface.setDebugMode(false);
+        }
         JPushInterface.init(getApplicationContext());//JPush初始化
         app = this;
 //        Fresco.initialize(this);//图片加载库初始化 使用SimpleDraweeView控件加载图片
