@@ -1,5 +1,235 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
+###极光推送集成
+date:2016年10月19日12:56:56
+极光推送版本：2.2.0 lib下载：http://pan.baidu.com/s/1geJCIcj
+</br>集成平台：Android
+</br>jdk：java 1.8
+</br>开发环境：AndroidStudio2.2.1
+</br>效果：http://blog.csdn.net/pkandroid/article/details/52858546
+</br>使用极光推送需要在极光推送官网注册，创建App，获取AppKey(AppKey=xxxxxxxxxxxxxxxxxxxxxxxxx)
+</br>把下载的资源中的libs全部复制到Julie/app下面,需要在julie\app\build.gradle里面的android{}中配置：
+```java
+  android{
+     .......
+     sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+```
+</br>在项目的AndroidMainfest.xml中配置（配置不全可能会导致获取不到RegistrationId，推送失败）：
+```java
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vincent.julie">
+
+    <uses-permission android:name="android.permission.READ_SMS"/>//读取信息
+    <uses-permission android:name="android.permission.CAMERA"/>//相机
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
+    <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
+
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />//如果没有配置此权限会导致收不到推送
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />//读取手机状态
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />//读取外部存储
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+
+    <application
+        android:name=".app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.activity.SecondsOpenAppActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.GuideActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTask"/>
+        <activity android:name=".ui.activity.WelcomActivity" />
+        <activity android:name=".ui.activity.PhoneInfoActivity"/>
+        <activity android:name=".ui.activity.QrScodeUtilsActivity"/>
+        <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.RxJavaTestActivity"/>
+        <activity android:name=".ui.activity.RetrofitActivity"/>
+        <activity android:name=".ui.activity.OkGoActivity"/>
+        <activity android:name=".ui.activity.JiGuangPushActivity"/>
+        <activity android:name=".ui.activity.PushMessageActivity"/>
+
+        <!--Service 相关-->
+        <!--priority 配置Service优先级 1000为最高-->
+        <service
+            android:name=".service.JulieService"
+            android:enabled="true"
+            android:persistent="true"
+            android:priority="1000"
+            android:exported="true">
+        </service>
+
+        <service android:name=".service.JobCastielService"
+            android:enabled="true"
+            android:persistent="true"
+            android:priority="1000"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
+
+        <service
+            android:name=".service.ProtectService"
+            android:enabled="true"
+            android:persistent="true"
+            android:process="com.vincent.julie.service.ProtectService"
+            android:priority="1000">
+        </service>
+        <!--广播-->
+        <receiver android:name=".reciver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <!--极光推送配置-->
+
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:theme="@style/MyDialogStyle"
+            android:exported="false" >
+        </activity>
+
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+        <!-- Required  SDK核心功能-->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+
+        </receiver>
+
+        <!-- Required SDK核心功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
+
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name=".reciver.JiGuangPushReceiver"//自定义的推送消息处理类
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="xxxxxxxxxxxxxxxx" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+    </application>
+
+</manifest>
+
+```
+####配置以及主要类详解：
+</ba>1、在MyApplication中onCreate()方法中初始化，以及设置调试日志开关
+```java
+        JPushInterface.setDebugMode(true);//测试模式，打开调试日志
+        JPushInterface.init(getApplicationContext());//JPush初始化
+```
+</ba>2、JiGuangPushReceiver,此广播接受处理推送消息（从Example中把MyReceiver类靠过来改一下名称即可，JiGuangPushReceiver中增加了对定义的消息处理，具体参见项目详情）
+</ba>3、JiGuangPushActivity类，初始化JPush（其实已经初始化过了，在MyApplication中，这个类主要是查看RegistrationId有没有生成成功，刚开始配置清单里面没配置好，RegistrationId没有生成，导致推送消息接收不了）
+</ba>4、PushMessageActivity类，自定义消息处理类，发送自定义消息的时候，点击通知栏的消息，会跳转到此类，查看具体消息详情，只是做了个例子，处理不多，</ba>消息采用Intent携带数据跳转
+#####添加NotificationUtils工具类，传递参数，发送通知到顶部通知栏
+</ba>void sendNotification(Context context, String activity, int imgId, String title, String msg);
+</br>context：上下文对象
+</br> activity：点击消息此跳转到Activity，的传入Activity必须包含的完整包名、类型，具体实现为反射
+</br> imgId：通知的图标
+</br> title：通知的标题
+</br> msg：通知的内容
 
 ###增加对Retrolambda的支持，增加对RxJava的支持,增加Retrofit网络框架支持
 date:2016年10月17日12:54:03</br>
