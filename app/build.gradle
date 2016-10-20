@@ -111,4 +111,5 @@ dependencies {
     //极光推送
     //    compile 'cn.jiguang:jpush:2.1.8'
    //    compile files('libs/jpush-android-2.2.0.jar')
+    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像  https://github.com/hdodenhof/CircleImageView
 }

@@ -20,4 +20,10 @@
         android:id="@+id/tv_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:padding="@dimen/size_10"
+        android:id="@+id/tv_send_broadcast_receiver"
+        android:text="发送个广播"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

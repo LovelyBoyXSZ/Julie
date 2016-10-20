@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * @author Vincent QQ1032006226
  *         created at 2016/9/26 8:37
@@ -46,6 +48,7 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
     private LinearLayout llChat, llFriends, llContacts, llSettings;
     private ImageView ivChat, ivFriends, ivContacts, ivSettings;
     private TextView tvChat, tvFriends, tvContacts, tvSettings;
+    private CircleImageView circleImageView;
     private Button btnMenu;
     private BackHandledFragment mBackHandledFragment;
     private List<Fragment> frgList = new ArrayList<>();
@@ -160,6 +163,13 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
             @Override
             public void onClick(View v) {
                 ToastUtils.showSingleTextToast(MyApplication.getInstance(),"Click");
+            }
+        });
+        circleImageView=(CircleImageView)findViewById(R.id.profile_image);
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showDefaultToast(MyApplication.getInstance(),"Click");
             }
         });
     }

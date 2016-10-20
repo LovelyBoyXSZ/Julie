@@ -1,17 +1,16 @@
 package com.vincent.julie.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
 import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.util.SystemUtilts;
-import com.vincent.julie.util.ToastUtils;
 import com.vincent.julie.view.AnFQNumEditText;
 import com.vincent.julie.view.BottomDialog;
 
@@ -29,6 +28,8 @@ public class CenterFragment extends BackHandledFragment {
 
     @BindView(R.id.tv_choose_img)
     TextView tvChooseImg;
+    @BindView(R.id.tv_send_broadcast_receiver)
+    TextView tvSendBroadcastReceiver;
 
     private View view;
     private AnFQNumEditText anetDemo;
@@ -49,9 +50,10 @@ public class CenterFragment extends BackHandledFragment {
                 .setType(AnFQNumEditText.SINGULAR)//TextView显示类型(SINGULAR单数类型)(PERCENTAGE百分比类型)
                 .setLineColor("#3F51B5")//设置横线颜色
                 .show();
-        SystemUtilts.getReflectInstance(getContext(),"com.vincent.julie.entity.Food");
+        SystemUtilts.getReflectInstance(getContext(), "com.vincent.julie.entity.Food");
         System.out.print("--------------------");
-        SystemUtilts.getReflectInstance(getContext(),"com.huawei.systemmanager.mainscreen.MainScreenActivity");
+        SystemUtilts.getReflectInstance(getContext(), "com.huawei.systemmanager.mainscreen.MainScreenActivity");
+
         return view;
     }
 
@@ -60,10 +62,19 @@ public class CenterFragment extends BackHandledFragment {
         return false;
     }
 
-    @OnClick(R.id.tv_choose_img)
-    public void onClick() {
-        //在底部弹出一个dialog
-        BottomDialog bottomDialog=BottomDialog.newInstance();
-        bottomDialog.show(getFragmentManager(),BottomDialog.class.getSimpleName());
+    @OnClick({R.id.tv_choose_img,R.id.tv_send_broadcast_receiver})
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_choose_img:
+                //在底部弹出一个dialog
+                BottomDialog bottomDialog = BottomDialog.newInstance();
+                bottomDialog.show(getFragmentManager(), BottomDialog.class.getSimpleName());
+                break;
+            case R.id.tv_send_broadcast_receiver:
+                Intent intent=new Intent("custom_broadcast_receiver");
+                MyApplication.getInstance().sendBroadcast(intent);
+                break;
+        }
     }
+
 }
