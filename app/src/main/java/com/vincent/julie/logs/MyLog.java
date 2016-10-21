@@ -1,5 +1,8 @@
 package com.vincent.julie.logs;
 
+import android.util.Log;
+
+import com.orhanobut.logger.Logger;
 import com.vincent.julie.app.Contants;
 
 /**
@@ -37,7 +40,8 @@ public final class MyLog {
 	 */
 	public static void i(String msg) {
 		if (all && i) {
-			android.util.Log.i(defaultTag, msg);
+//			android.util.Log.i(defaultTag, msg);
+			Logger.i(defaultTag,msg);
 		}
 	}
 
@@ -51,7 +55,8 @@ public final class MyLog {
 	 */
 	public static void i(String tag, String msg) {
 		if (all && i) {
-			android.util.Log.i(tag, msg);
+//			android.util.Log.i(tag, msg);
+			Logger.i(tag,msg);
 		}
 	}
 
@@ -63,7 +68,8 @@ public final class MyLog {
 	 */
 	public static void d(String msg) {
 		if (all && d) {
-			android.util.Log.d(defaultTag, msg);
+//			android.util.Log.d(defaultTag, msg);
+			Logger.d(defaultTag,msg);
 		}
 	}
 
@@ -77,7 +83,8 @@ public final class MyLog {
 	 */
 	public static void d(String tag, String msg) {
 		if (all && d) {
-			android.util.Log.d(tag, msg);
+//			android.util.Log.d(tag, msg);
+			Logger.d(tag,msg);
 		}
 	}
 
@@ -90,7 +97,8 @@ public final class MyLog {
 	public static void e(String msg) {
 		if (all && e) {
 			try {
-				android.util.Log.e(defaultTag, msg);
+//				android.util.Log.e(defaultTag, msg);
+				Logger.e(defaultTag,msg);
 			} catch (Exception e1) {
 				// TOdO Auto-generated catch block
 				e1.printStackTrace();
@@ -109,6 +117,7 @@ public final class MyLog {
 	public static void e(String tag, String msg) {
 		if (all && e) {
 			android.util.Log.e(tag, msg);
+			Logger.e(tag,msg);
 		}
 	}
 
@@ -120,7 +129,8 @@ public final class MyLog {
 	 */
 	public static void v(String msg) {
 		if (all && v) {
-			android.util.Log.v(defaultTag, msg);
+//			android.util.Log.v(defaultTag, msg);
+			Logger.v(defaultTag,msg);
 		}
 	}
 
@@ -134,7 +144,8 @@ public final class MyLog {
 	 */
 	public static void v(String tag, String msg) {
 		if (all && v) {
-			android.util.Log.v(tag, msg);
+//			android.util.Log.v(tag, msg);
+			Logger.v(tag,msg);
 		}
 	}
 
@@ -146,7 +157,8 @@ public final class MyLog {
 	 */
 	public static void w(String msg) {
 		if (all && w) {
-			android.util.Log.w(defaultTag, msg);
+//			android.util.Log.w(defaultTag, msg);
+			Logger.w(defaultTag,msg);
 		}
 	}
 
@@ -160,7 +172,8 @@ public final class MyLog {
 	 */
 	public static void w(String tag, String msg) {
 		if (all && w) {
-			android.util.Log.w(tag, msg);
+//			android.util.Log.w(tag, msg);
+			Logger.w(tag,msg);
 		}
 	}
 

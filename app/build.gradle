@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda' //retrolambda 插件声明 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
+//apply plugin: 'com.tencent.tinker.patch'//apply tinker 插件
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -111,5 +113,19 @@ dependencies {
     //极光推送
     //    compile 'cn.jiguang:jpush:2.1.8'
    //    compile files('libs/jpush-android-2.2.0.jar')
+    //可选，用于生成application类
+//    compile('com.tencent.tinker:tinker-android-anno:1.7.0')
+    //tinker的核心库
+//    compile('com.tencent.tinker:tinker-android-lib:1.7.0')
     compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像  https://github.com/hdodenhof/CircleImageView
+//    compile 'com.github.mmin18:flexlayout:1.2.6'//简化布局的框架 github address:https://github.com/mmin18/FlexLayout
+    //android开发之Logger神器 http://blog.csdn.net/yy1300326388/article/details/45825343 颜色配置：http://blog.csdn.net/yy1300326388/article/details/45825123
+    compile 'com.orhanobut:logger:1.8'
+    //神器调用：Logger.d("hello");
+    // Logger.e("hello");
+    // Logger.w("hello");
+    // Logger.v("hello");
+    //Logger.wtf("hello");
+    //Logger.json(JSON_CONTENT);//支持了Json哦
+    //Logger.xml(XML_CONTENT);//支持XML
 }

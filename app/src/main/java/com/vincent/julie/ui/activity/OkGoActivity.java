@@ -96,9 +96,7 @@ public class OkGoActivity extends BaseActivity {
                             .execute(new WeatherCallBack(){
                                 @Override
                                 public void onSuccess(WeatherEntity entity, Call call, Response response) {
-                                    if(entity!=null){
-                                        MyLog.d("data",entity.toString());
-                                    }
+                                   MyLog.d("错误码","错误码："+entity.getError_code());
                                 }
                             });
                 }catch (Exception e){
