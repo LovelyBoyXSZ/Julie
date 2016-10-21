@@ -208,7 +208,13 @@ public final class MyLog {
    }
 ```
 
-
+* 如果想使用更加绚丽的效果，可以自定义各等级日志的字体颜色
+</br>AndroidStudio配置：
+</br>1、File->Settings 或Ctrl + Alt +S
+</br>2、找到 Editor -> Colors &Fonts -> Android Logcat 或在上面的搜索框中输入Logcat
+</br>3、点中Verbose , Info, Debug等选项，然后在后面将Use Inberited attributes 去掉勾选
+</br>4、再将 Foreground 前的复选框选上，就可以双击后面的框框去选择颜色了
+</br>5、Apply–>OK
 
 ###极光推送集成
 date:2016年10月19日12:56:56
