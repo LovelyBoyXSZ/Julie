@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +45,16 @@ public class JiGuangPushActivity extends InstrumentedActivity {
     @BindView(R.id.tv_show_registration_id)
     TextView tvShowRegistrationId;
 
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.arg1==1){
+                btnGetRegistrationId.setText("收到handler发送的消息！！");
+                tvShowRegistrationId.setText("我就更新下个视图，没什么事儿..");
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +99,20 @@ public class JiGuangPushActivity extends InstrumentedActivity {
             MyLog.d("It's error for get registration...");
             ToastUtils.showSingleTextToast(MyApplication.getInstance(),"Get registration fail, JPush init failed!");
         }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MyLog.d("Thead","newThread");
+                try {
+                    Thread.sleep(3000);
+                    Message message=Message.obtain();
+                    message.arg1=1;
+                    handler.sendMessage(message);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }
