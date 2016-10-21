@@ -42,6 +42,8 @@ public final class MyLog {
 		if (all && i) {
 //			android.util.Log.i(defaultTag, msg);
 			Logger.i(defaultTag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -57,6 +59,8 @@ public final class MyLog {
 		if (all && i) {
 //			android.util.Log.i(tag, msg);
 			Logger.i(tag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -70,6 +74,8 @@ public final class MyLog {
 		if (all && d) {
 //			android.util.Log.d(defaultTag, msg);
 			Logger.d(defaultTag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -84,7 +90,9 @@ public final class MyLog {
 	public static void d(String tag, String msg) {
 		if (all && d) {
 //			android.util.Log.d(tag, msg);
-			Logger.d(tag,msg);
+			Logger.d(msg,tag);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -103,6 +111,8 @@ public final class MyLog {
 				// TOdO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -118,6 +128,8 @@ public final class MyLog {
 		if (all && e) {
 			android.util.Log.e(tag, msg);
 			Logger.e(tag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -131,6 +143,8 @@ public final class MyLog {
 		if (all && v) {
 //			android.util.Log.v(defaultTag, msg);
 			Logger.v(defaultTag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -146,6 +160,8 @@ public final class MyLog {
 		if (all && v) {
 //			android.util.Log.v(tag, msg);
 			Logger.v(tag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -159,6 +175,8 @@ public final class MyLog {
 		if (all && w) {
 //			android.util.Log.w(defaultTag, msg);
 			Logger.w(defaultTag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 
@@ -174,6 +192,8 @@ public final class MyLog {
 		if (all && w) {
 //			android.util.Log.w(tag, msg);
 			Logger.w(tag,msg);
+		}else {
+			Log.d("Julie","What are you doing?");
 		}
 	}
 

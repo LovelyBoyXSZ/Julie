@@ -24,7 +24,8 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application {
 
-    private static MyApplication app;
+    private static MyApplication app;    //SysApplication实例
+
     /**
      * 管理Activity
      *
@@ -56,6 +57,16 @@ public class MyApplication extends Application {
     }
 
     /**
+     * 获得MyApplication实例
+     * @return
+     */
+    public synchronized static MyApplication getInstance() {   //通过一个方法给外面提供实例
+        if (null == app) {
+//            app = new MyApplication();
+        }
+        return app;
+    }
+    /**
      * 目的：解决方法数65535限制
      * @param base
      */
@@ -65,14 +76,7 @@ public class MyApplication extends Application {
         MultiDex.install(this);
     }
 
-    /**
-     * 返回一个Application对象
-     *
-     * @return
-     */
-    public static MyApplication getInstance() {
-        return app;
-    }
+
 
     /**
      * 非继承BaseActivity的Activity应该手动在onCreate方法中添加此方法
@@ -108,9 +112,16 @@ public class MyApplication extends Application {
         }
         if (actList.size() > 0) {
             MyLog.w("removeAllActivity方法调用", "actList is not null");
+           for(int i=0;i<actList.size();i++){
+               MyLog.d("actList:",actList.get(i).getClass().getSimpleName());
+           }
         }
     }
-
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();   //告诉系统回收
+    }
     /**
      * 获取屏幕宽度
      *
