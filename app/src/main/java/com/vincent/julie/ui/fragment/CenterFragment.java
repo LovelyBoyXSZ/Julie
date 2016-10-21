@@ -52,7 +52,7 @@ public class CenterFragment extends BackHandledFragment {
                 .show();
         SystemUtilts.getReflectInstance(getContext(), "com.vincent.julie.entity.Food");
         System.out.print("--------------------");
-        SystemUtilts.getReflectInstance(getContext(), "com.huawei.systemmanager.mainscreen.MainScreenActivity");
+//        SystemUtilts.getReflectInstance(getContext(), "com.huawei.systemmanager.mainscreen.MainScreenActivity");
 
         return view;
     }

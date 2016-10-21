@@ -3,6 +3,7 @@ package com.vincent.julie.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
@@ -52,6 +53,16 @@ public class MyApplication extends Application {
         MyLog.d("UDID",JPushInterface.getUdid(this));//设备Id==Uid
         MyLog.d("AppKey",ExampleUtil.getAppKey(this));
         MyLog.d("IMEI",ExampleUtil.getImei(this,"IMEI获取失败"));
+    }
+
+    /**
+     * 目的：解决方法数65535限制
+     * @param base
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     /**

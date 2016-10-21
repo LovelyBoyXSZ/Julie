@@ -12,6 +12,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true //解决方法数限制添加的
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -128,4 +129,6 @@ dependencies {
     //Logger.wtf("hello");
     //Logger.json(JSON_CONTENT);//支持了Json哦
     //Logger.xml(XML_CONTENT);//支持XML
+    //解决65535方法数限制，通过分割Dex文件解决
+    compile 'com.android.support:multidex:1.0.1' //http://www.jianshu.com/p/f68b0b070c31
 }
