@@ -1,5 +1,44 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
+###解决android app方法数65535限制
+</br>date:2016年10月21日12:06:22
+</br>from:http://www.jianshu.com/p/f68b0b070c31
+
+* 在项目app的build.gradle中的android{defaultConfig{xx}}配置
+```java
+android{
+	defaultConfig{
+		multiDexEnabled true
+	}
+}
+```
+* 在MyApplication中重写attachBaseContext(Context base)方法
+```java
+/**
+     * 目的：解决方法数65535限制
+     * @param base
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+```
+
+
+* 在项目的app的build.gradle中的dependencies{}中配置multidex
+```java
+
+  dependencies{
+    ..................
+     compile 'com.android.support:multidex:1.0.1' //http://www.jianshu.com/p/f68b0b070c31
+    .................
+  }
+
+```
+
+
+
 ###Logger神器集成
 </br>date:2016年10月21日11:38:34
 </br>from: http://blog.csdn.net/yy1300326388/article/details/45825343
