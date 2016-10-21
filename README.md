@@ -2,7 +2,7 @@
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
 ###极光推送集成
 date:2016年10月19日12:56:56
-m:https://github.com/HYVincent/Julie/edit/master/README.md 集成了小米华为魅族激光推送的库
+</br>m:https://github.com/HYVincent/Julie/edit/master/README.md 集成了小米华为魅族激光推送的库
 极光推送版本：2.2.0 lib下载：http://pan.baidu.com/s/1geJCIcj
 </br>集成平台：Android
 </br>jdk：java 1.8
