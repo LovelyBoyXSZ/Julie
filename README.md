@@ -8,7 +8,9 @@
 ```java
 android{
 	defaultConfig{
+		.........
 		multiDexEnabled true
+		........
 	}
 }
 ```
