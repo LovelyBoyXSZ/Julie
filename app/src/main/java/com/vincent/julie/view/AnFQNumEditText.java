@@ -2,6 +2,8 @@ package com.vincent.julie.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -13,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
+import com.vincent.julie.app.MyApplication;
+import com.vincent.julie.listener.SendMsgOnClickListener;
+import com.vincent.julie.util.ToastUtils;
 
 /**
  * 项目名称：Julie
@@ -26,16 +31,23 @@ import com.vincent.julie.R;
  * 十月
  */
 
-public class AnFQNumEditText extends RelativeLayout {
+public  class AnFQNumEditText extends RelativeLayout {
     //类型1(单数类型)：TextView显示总字数，然后根据输入递减.例：100，99，98
     //类型2(百分比类型)：TextView显示总字数和当前输入的字数，例：0/100，1/100，2/100
     public static final String SINGULAR = "Singular";//类型1(单数类型)
     public static final String PERCENTAGE = "Percentage";//类型2(百分比类型)
     private EditText etContent;//文本框
+    private TextView tvSend;//发送按钮
     private TextView tvNum;//字数显示TextView
     private View vLine;//底部横线
     private String TYPES = SINGULAR;//类型
     private int MaxNum = 100;//最大字符
+
+    private SendMsgOnClickListener sendMsgOnClickListener;
+
+    public void setSendMsgListener(SendMsgOnClickListener sendMsgOnClickListener){
+        this.sendMsgOnClickListener=sendMsgOnClickListener;
+    }
 
     public AnFQNumEditText(Context context) {
         this(context, null);
@@ -45,8 +57,37 @@ public class AnFQNumEditText extends RelativeLayout {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.anfq_num_editext, this, true);
         etContent = (EditText) findViewById(R.id.etContent);
+        tvSend=(TextView)findViewById(R.id.tv_send_msg);
         tvNum = (TextView) findViewById(R.id.tvNum);
         vLine = findViewById(R.id.vLine);
+    }
+
+    /**
+     * 设置发送按钮的文字，默认为短信发送
+     * @param text
+     */
+    public void setText(String text){
+        if(text!=null&&tvSend!=null){
+            tvSend.setText(text);
+        }
+    }
+
+    /**
+     * 清空输入
+     */
+    public void clearText(){
+        if(etContent!=null)etContent.setText("");
+    }
+
+    /**
+     * 返回内容
+     * @return
+     */
+    public String getText(){
+        if(null!=etContent){
+            return etContent.getText().toString().trim();
+        }
+        return null;
     }
 
     /**
@@ -65,6 +106,8 @@ public class AnFQNumEditText extends RelativeLayout {
         etContent.addTextChangedListener(mTextWatcher);
         return this;
     }
+
+
 
     /**
      * 设置横线颜色
@@ -119,6 +162,7 @@ public class AnFQNumEditText extends RelativeLayout {
     private TextWatcher mTextWatcher = new TextWatcher() {
         private int editStart;
         private int editEnd;
+
         public void afterTextChanged(Editable s) {
             editStart = etContent.getSelectionStart();
             editEnd = etContent.getSelectionEnd();
@@ -135,10 +179,24 @@ public class AnFQNumEditText extends RelativeLayout {
             etContent.addTextChangedListener(mTextWatcher);
             setLeftCount();
         }
-
-        public void beforeTextChanged(CharSequence s, int start, int count,int after) {}
-
-        public void onTextChanged(CharSequence s, int start, int before,int count) {}
+        public void beforeTextChanged(CharSequence s, int start, int count,int after) {
+        }
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        public void onTextChanged(CharSequence s, int start, int before,int count) {
+            if (etContent.getText().length() == start && start == 0) {
+                tvSend.setClickable(false);
+                tvSend.setBackground(getResources().getDrawable(R.drawable.shape_tv_no_send_msg));
+            } else {
+                tvSend.setClickable(true);
+                tvSend.setBackground(getResources().getDrawable(R.drawable.shape_tv_can_send_msg));
+                tvSend.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sendMsgOnClickListener.SendMsg(etContent.getText().toString());
+                    }
+                });
+            }
+        }
     };
 
     /** 刷新剩余输入字数 */
@@ -148,13 +206,17 @@ public class AnFQNumEditText extends RelativeLayout {
         }else if(TYPES.equals(PERCENTAGE)){//类型2
             tvNum.setText(MaxNum-(MaxNum - getInputCount())+"/"+MaxNum);
         }
-
     }
+
+
 
     /** 获取用户输入内容字数 */
     private long getInputCount() {
         return calculateLength(etContent.getText().toString());
     }
+
+
+
     /**
      * 计算分享内容的字数，一个汉字=两个英文字母，一个中文标点=两个英文标点
      * 注意：该函数的不适用于对单个字符进行计算，因为单个字符四舍五入后都是1

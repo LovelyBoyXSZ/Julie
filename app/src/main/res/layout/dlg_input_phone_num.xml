@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:background="@null"
+        android:padding="@dimen/size_20"
+        android:hint="点此输入手机号码"
+        android:textColorHint="@color/common_color_gray_white"
+        android:paddingLeft="@dimen/size_30"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="11"
+
+        android:id="@+id/et_input_phone" />
+
+    <ImageView
+        android:id="@+id/iv_clear_all"
+        android:layout_marginLeft="-40dp"
+        android:src="@mipmap/icon_clear"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        android:layout_width="@dimen/size_20"
+        android:layout_height="@dimen/size_20" />
+
+</LinearLayout>

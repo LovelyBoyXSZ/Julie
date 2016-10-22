@@ -13,11 +13,17 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.vincent.julie.R;
 import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.util.AppUtil;
+
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Date;
 
 /**
  * 项目名称：Julie
@@ -33,6 +39,7 @@ import com.vincent.julie.util.AppUtil;
 public class ProtectService extends Service{
 
     private static final String TAG=ProtectService.class.getSimpleName();
+    private TelephonyManager tManager;
 
     @Nullable
     @Override
@@ -51,6 +58,40 @@ public class ProtectService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        tManager=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        PhoneStateListener listener=new PhoneStateListener(){
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                switch (state){
+                    case TelephonyManager.CALL_STATE_IDLE:
+                        MyLog.w(ProtectService.class.getSimpleName(),"当前无任何状态");
+                        break;
+                    case TelephonyManager.CALL_STATE_OFFHOOK:
+                        MyLog.d(TAG,"CALL_STATE_OFFHOOK");
+                        break;
+                    case TelephonyManager.CALL_STATE_RINGING:
+                        MyLog.w(ProtectService.class.getSimpleName(),"来电啦");
+                        OutputStream os=null;
+                        try {
+                            os=openFileOutput("phoneList",MODE_APPEND);
+                            PrintStream ps=new PrintStream(os);
+                            //将来电号码记录到文件中
+                            ps.println(new Date()+"来电:"+incomingNumber);
+                            ps.close();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            MyLog.w(TAG,"来电号码保存失败");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                super.onCallStateChanged(state, incomingNumber);
+            }
+        };
+        tManager.listen(listener,PhoneStateListener.LISTEN_CALL_STATE);
+
+
         /**
          * 此广播监听系统时间变化、系统每分钟发一次ACTION_TIME_TICK
          */
@@ -72,9 +113,17 @@ public class ProtectService extends Service{
             if(intent.getAction().equals(Intent.ACTION_TIME_TICK)){
                 MyLog.d(TAG,"-_-");
                 checkService();
+                checkCallPhone();
             }
         }
     };
+
+    /**
+     * 监控手机来电
+     */
+    private void checkCallPhone() {
+
+    }
 
     /**
      * 〈检查JulieService时候正在运行〉

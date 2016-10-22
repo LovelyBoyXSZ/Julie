@@ -34,4 +34,17 @@
         android:background="#ff00ff"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
+
+    <TextView
+        android:id="@+id/tv_send_msg"
+        android:layout_marginTop="@dimen/size_15"
+        android:layout_marginRight="@dimen/size_15"
+        android:layout_gravity="right"
+        android:gravity="center"
+        android:background="@drawable/shape_tv_no_send_msg"
+        android:textColor="@color/common_color_white"
+        android:textSize="@dimen/size_18sp"
+        android:text="发送"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_33" />
 </LinearLayout>

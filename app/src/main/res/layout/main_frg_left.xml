@@ -13,4 +13,15 @@
         android:layout_width="@dimen/size_20"
         android:layout_height="@dimen/size_20"
         android:id="@+id/progressBar" />
+
+    <Button
+        android:text="启动别的app里面的Activity"
+        android:id="@+id/btn_start_other_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="启动工作线程执行耗时操作"
+        android:id="@+id/start_myintentservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

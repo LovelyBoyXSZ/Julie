@@ -13,12 +13,34 @@ import android.util.Log;
 
 
 import com.vincent.julie.app.MyApplication;
+import com.vincent.julie.logs.MyLog;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class AppUtil {
+	/**
+	 * 启动另外一个app里面的activity
+	 * @param packageName 指的是你要启动的app的主要的包名 配置文件里面顶部的packname
+	 * @param activityName 你要启动的activity的包含完整包名的Activity
+	 *  注意：   需要启动的Activity需要配置<intent-filter> <action android:name="android.intent.action.View/> </intent-filter>
+     */
+	public static void startOtherAppActivity(String packageName,String activityName){
+		try {
+			Intent intent=new Intent();
+			ComponentName componentName=new ComponentName(packageName,activityName);
+			intent.setComponent(componentName);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//如果没有设置，则会报错 AndroidRuntimeException
+			MyApplication.getInstance().startActivity(intent);
+			MyLog.w("AppUtils->startOtherAppActivity","正在启动"+activityName+",请稍后..");
+			ToastUtils.showDefaultToast(MyApplication.getInstance(),"正在启动..");
+		}catch (Exception e){
+			e.printStackTrace();
+			MyLog.w("AppUtils->startOtherAppActivity","启动失败了，我猜测是没有权限吧");
+			ToastUtils.showDefaultToast(MyApplication.getInstance(),"启动失败");
+		}
+	}
 
 	/**
 	 * 用来判断服务是否运行.

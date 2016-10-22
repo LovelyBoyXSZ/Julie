@@ -16,6 +16,7 @@ public class TimeCount extends CountDownTimer {
 
     private TextView tv;
     private Context c;
+    private String text;
 
     /**
      * 初始化，构造函数
@@ -23,11 +24,13 @@ public class TimeCount extends CountDownTimer {
      * @param millisInFuture 总的时间
      * @param countDownInterval 一般设置为1000，一秒钟减1
      * @param textView 需要设置倒计时的对象
+     * @param text 时间结束之后变成什么字
      */
-    public TimeCount(Context context, long millisInFuture, long countDownInterval, TextView textView) {
+    public TimeCount(Context context, long millisInFuture, long countDownInterval, TextView textView,String text) {
         super(millisInFuture, countDownInterval);
         this.tv = textView;
         this.c=context;
+        this.text=text;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class TimeCount extends CountDownTimer {
 
     @Override
     public void onFinish() {
-        tv.setText("再次获取");
+        tv.setText(text);
         tv.setClickable(true);
     }
 

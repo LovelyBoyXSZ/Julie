@@ -25,7 +25,7 @@ import cn.jpush.android.api.JPushInterface;
 public class MyApplication extends Application {
 
     private static MyApplication app;    //SysApplication实例
-
+    private long startTime=0;
     /**
      * 管理Activity
      *
@@ -74,6 +74,7 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        startTime=System.currentTimeMillis();//记录一个时间点，计算app启动时间
     }
 
 

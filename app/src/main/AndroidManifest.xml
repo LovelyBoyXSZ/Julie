@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vincent.julie">
 
-    <uses-permission android:name="android.permission.READ_SMS"/>//读取信息
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS"></uses-permission>//读取信息
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA"/>//相机
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
     <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
@@ -54,7 +56,7 @@
         </activity>
         <activity android:name=".ui.activity.GuideActivity" />
         <activity android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity android:name=".ui.activity.WelcomActivity" />
         <activity android:name=".ui.activity.PhoneInfoActivity"/>
         <activity android:name=".ui.activity.QrScodeUtilsActivity"/>
@@ -64,6 +66,7 @@
         <activity android:name=".ui.activity.OkGoActivity"/>
         <activity android:name=".ui.activity.JiGuangPushActivity"/>
         <activity android:name=".ui.activity.PushMessageActivity"/>
+        <activity android:name=".ui.activity.SendMsgActivity"/>
 
         <!--Service 相关-->
         <!--priority 配置Service优先级 1000为最高-->

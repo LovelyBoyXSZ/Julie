@@ -11,6 +11,29 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * 方法列表：
+ * toDate(String sdate) 将字符串转位日期类型
+ * friendly_time(String sdate) 以友好的方式显示时间
+ * isToday(String sdate) 判断给定字符串时间是否为今日
+ * getToday() 返回long类型的今天的日期
+ * isEmpty(String str) 判断一个字符串是否为null或空值.
+ * isEmptyEx(String input) 判断给定字符串是否空白串，（isEmpty的扩展方法）。 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true
+ * isEmail(String email) 判断是不是一个合法的电子邮件地址
+ * isMobileNO(String mobiles) 判断是不是一个合法的手机号码
+ * isPhoneNumber(String isPhoneNumber) 判断输入的号码是否为合法的电话号码（包括固话，区号，手机）
+ * isNumber(String str) 是否只是数字.
+ * isContainChinese(String str)是否包含中文.
+ * toInt(String str, int defValue) 字符串转整数
+ * toInt(Object obj) 对象转整数
+ * toLong(String obj) 对象转整数
+ * toBool(String b) 字符串转布尔值
+ * toConvertString(InputStream is) 将一个InputStream流转换成字符串
+ * toByteArray(String s) 把字符串转为字节数组
+ * toHexString(byte[] bytes) 字节数组转为字符串
+ *
+ */
 public class StringUtils {
 
 	private final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
@@ -328,6 +351,7 @@ public class StringUtils {
 	
     /**
      * Converts a hex string into a byte array.
+	 * 字符串转为字节数组
      * 
      * @param s - string to be converted
      * @return byte array converted from s
@@ -345,7 +369,7 @@ public class StringUtils {
     /**
      * 
      * 方法说明：<br>
-     * 
+     * 字节数组转为字符串
      * @param bytes
      * @return string
      */

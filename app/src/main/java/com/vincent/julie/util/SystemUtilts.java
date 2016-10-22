@@ -3,6 +3,7 @@ package com.vincent.julie.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,9 +12,13 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
+import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vincent.julie.app.MyApplication;
@@ -38,11 +43,37 @@ import static android.content.Context.TELEPHONY_SERVICE;
 
 /**
  * 设置手机顶部状态栏颜色
- *
+ *方法列表：
+ *  获取手机的IMEI号码，
+ *  获取手机号码，
+ *  基带版本，
+ *  内核版本，
+ *  内部版本，
+ *  获取手机的可用内存大小，
+ *  获取手机总的运行内存
+ *  判断手机是否Root
+ *  判断应用是在前台还是后台，
+ *  得到系统可用内存，
+ *  内置SD卡总容量，
+ *  获得内置SD卡总大小，
+ *  判断某个服务是否正在运行的Method
+ *  开启悬浮窗权限oppo手机，
+ *  判断某个APP是否安装，
+ *  跳转到华为手机管家悬浮窗权限管理页面，
+ *  跳转到华为手机管家权限管理主页，
+ *  华为手机管家自启动管理
+ *  跳转到华为手机管家关联启动页面，
+ *  跳转到受保护的app管理页面锁屏可以继续运行，
+ *  跳转到华为手机管家通知管理页面，跳转到华为手机管家清理加速页面
+ *  跳转到华为手机管家骚扰拦截页面，
+ *  通过反射获取类对象，
+ *  getInputKeyboard(EditText editText) 自动弹出键盘
+ *  closeInputKeyBoard(EditText editText) 关闭软键盘
  * @author Vincent QQ1032006226
  *         created at 2016/9/26 9:13
  */
 public class SystemUtilts {
+
     private static final String TAG = SystemUtilts.class.getSimpleName();
 
     /**
@@ -145,9 +176,14 @@ public class SystemUtilts {
      * @return
      */
     public static String getPhoneNumber(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context
-                .getSystemService(TELEPHONY_SERVICE);
-        return telephonyManager.getLine1Number();
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context
+                    .getSystemService(TELEPHONY_SERVICE);
+            return telephonyManager.getLine1Number();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "number is null";
     }
 
     /**
@@ -469,7 +505,7 @@ public class SystemUtilts {
     }
 
     /**
-     * 开启权限
+     * 开启悬浮窗权限,oppo手机
      *
      * @param context
      */
@@ -550,7 +586,7 @@ public class SystemUtilts {
     }
 
     /**
-     * 权限管理主页
+     * 跳转到华为手机管家权限管理主页
      *  com.huawei.systemmanager/com.huawei.permissionmanager.ui.MainActivity
      */
     public static void goHWWindowPermission(){
@@ -583,7 +619,7 @@ public class SystemUtilts {
         }
     }
     /**
-     * 关联启动
+     *跳转到华为手机管家关联启动页面
      * com.huawei.systemmanager/.startupmgr.ui.StartupAwakedAppListActivity
      *  java.lang.SecurityException: Permission Denial: starting Intent { act=com.vincent.julie flg=0x10000000 cmp=com.huawei.systemmanager/.startupmgr.ui.StartupAwakedAppListActivity } from ProcessRecord{bdb00e8 31867:com.vincent.julie/u0a156} (pid=31867, uid=10156) not exported from uid 1000
      */
@@ -721,5 +757,52 @@ public class SystemUtilts {
         }
         return null;
     }
+
+    /**
+     * 自动弹出键盘
+     * @param editText
+     */
+    public static void getInputKeyboard(EditText editText){
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(500);
+                        MyLog.d(SystemUtilts.class.getSimpleName(),"尝试弹出软键盘");
+                        InputMethodManager imm = (InputMethodManager) MyApplication.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInputFromInputMethod(editText.getWindowToken(),InputMethodManager.SHOW_IMPLICIT);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 关闭键盘
+     */
+    public static void closeInputKeyBoard(EditText editText){
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(500);
+                        InputMethodManager imm = (InputMethodManager) MyApplication.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(editText.getWindowToken() , 0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

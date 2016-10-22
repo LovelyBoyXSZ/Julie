@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="common_color_white">#FFFFFF</color>
+    <color name="common_color_gray_white">#F4F4F4</color>
     <color name="common_color_jacinth">#FF8247</color>
     <color name="common_color_red">#FF0000</color>
     <color name="common_color_yellow">#FFFF00</color>

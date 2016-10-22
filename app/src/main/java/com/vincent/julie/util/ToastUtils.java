@@ -5,9 +5,15 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 /**
-  *Toast工具
-  *@author Vincent QQ1032006226
-  *created at 2016/9/26 10:22
+ *Toast工具
+ * 方法列表：
+ * showSingleTextToast(Context context,String msg) 时间不叠加 length
+ * showDefaultToast(Context context,String msg) 默认的 length
+ * showDefaultToastCenter(Context context,String msg) 默认的，在屏幕中央弹出
+ * showSingleToastCenter(Context context,String msg)在屏幕中间弹出来，时间不叠加
+ *
+ *@author Vincent QQ1032006226
+ *created at 2016/9/26 10:22
   */
 public class ToastUtils {
     private static Toast toast;
@@ -34,7 +40,7 @@ public class ToastUtils {
     public static void showDefaultToast(Context context,String msg){
         Toast.makeText(context.getApplicationContext(),msg,Toast.LENGTH_LONG).show();
     }
-    /**
+    /**在屏幕中间弹出来
      *@param context
      * @param msg 
      *@author Vincent QQ:1032006226

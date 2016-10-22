@@ -16,10 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1px"/>
 
-    <com.vincent.julie.view.AnFQNumEditText
-        android:id="@+id/tv_custom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
     <TextView
         android:padding="@dimen/size_10"
         android:id="@+id/tv_send_broadcast_receiver"

@@ -47,7 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends FragmentActivity implements BackHandledInterface {
     private LinearLayout llChat, llFriends, llContacts, llSettings;
     private ImageView ivChat, ivFriends, ivContacts, ivSettings;
-    private TextView tvChat, tvFriends, tvContacts, tvSettings;
+    private TextView tvChat, tvFriends, tvContacts, tvSettings,tvSendMsg;
     private CircleImageView circleImageView;
     private Button btnMenu;
     private BackHandledFragment mBackHandledFragment;
@@ -170,6 +170,13 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
             @Override
             public void onClick(View v) {
                 ToastUtils.showDefaultToast(MyApplication.getInstance(),"Click");
+            }
+        });
+        tvSendMsg=(TextView)findViewById(R.id.tv_send_msg);
+        tvSendMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SendMsgActivity.class));
             }
         });
     }

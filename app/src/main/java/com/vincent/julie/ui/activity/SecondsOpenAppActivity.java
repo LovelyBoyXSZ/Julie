@@ -14,7 +14,7 @@ import com.vincent.julie.app.BaseActivity;
  *created at 2016/9/26 8:34
  */
 public class SecondsOpenAppActivity extends BaseActivity{
-
+    private long endTime=0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,5 +40,11 @@ public class SecondsOpenAppActivity extends BaseActivity{
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        endTime=System.currentTimeMillis();
     }
 }

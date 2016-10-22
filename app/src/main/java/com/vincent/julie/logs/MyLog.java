@@ -41,7 +41,7 @@ public final class MyLog {
 	public static void i(String msg) {
 		if (all && i) {
 //			android.util.Log.i(defaultTag, msg);
-			Logger.i(defaultTag,msg);
+			Logger.i(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -58,7 +58,7 @@ public final class MyLog {
 	public static void i(String tag, String msg) {
 		if (all && i) {
 //			android.util.Log.i(tag, msg);
-			Logger.i(tag,msg);
+			Logger.i(msg,tag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -73,7 +73,7 @@ public final class MyLog {
 	public static void d(String msg) {
 		if (all && d) {
 //			android.util.Log.d(defaultTag, msg);
-			Logger.d(defaultTag,msg);
+			Logger.d(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -106,7 +106,7 @@ public final class MyLog {
 		if (all && e) {
 			try {
 //				android.util.Log.e(defaultTag, msg);
-				Logger.e(defaultTag,msg);
+				Logger.e(msg,defaultTag);
 			} catch (Exception e1) {
 				// TOdO Auto-generated catch block
 				e1.printStackTrace();
@@ -126,8 +126,8 @@ public final class MyLog {
 	 */
 	public static void e(String tag, String msg) {
 		if (all && e) {
-			android.util.Log.e(tag, msg);
-			Logger.e(tag,msg);
+//			android.util.Log.e(tag, msg);
+			Logger.e(msg,tag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -142,7 +142,7 @@ public final class MyLog {
 	public static void v(String msg) {
 		if (all && v) {
 //			android.util.Log.v(defaultTag, msg);
-			Logger.v(defaultTag,msg);
+			Logger.v(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -159,7 +159,7 @@ public final class MyLog {
 	public static void v(String tag, String msg) {
 		if (all && v) {
 //			android.util.Log.v(tag, msg);
-			Logger.v(tag,msg);
+			Logger.v(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -174,7 +174,7 @@ public final class MyLog {
 	public static void w(String msg) {
 		if (all && w) {
 //			android.util.Log.w(defaultTag, msg);
-			Logger.w(defaultTag,msg);
+			Logger.w(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}
@@ -191,7 +191,7 @@ public final class MyLog {
 	public static void w(String tag, String msg) {
 		if (all && w) {
 //			android.util.Log.w(tag, msg);
-			Logger.w(tag,msg);
+			Logger.w(msg,defaultTag);
 		}else {
 			Log.d("Julie","What are you doing?");
 		}

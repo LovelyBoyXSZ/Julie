@@ -15,7 +15,32 @@ import com.vincent.julie.view.StatusBarView;
 
 /**
  * Created by Jaeger on 16/2/14.
- *
+ * 方法列表：
+ * setColor(Activity activity, int color) 设置状态栏颜色
+ * setColor(Activity activity, int color, int statusBarAlpha) 设置状态栏颜色和透明度
+ * setColorNoTranslucent(Activity activity, int color) 设置状态栏纯色 不加半透明效果
+ * setColorDiff(Activity activity, int color) 设置状态栏颜色(5.0以下无半透明效果,不建议使用)
+ * setTranslucent(Activity activity) 使状态栏半透明 适用于图片作为背景的界面,此时需要图片填充到状态栏
+ * setTranslucent(Activity activity, int statusBarAlpha) 使状态栏半透明 适用于图片作为背景的界面,此时需要图片填充到状态栏
+ * setTransparent(Activity activity) 设置状态栏全透明
+ * setTranslucentDiff(Activity activity) 使状态栏透明(5.0以上半透明效果,不建议使用) 适用于图片作为背景的界面,此时需要图片填充到状态栏
+ * setColorForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int color) 为DrawerLayout 布局设置状态栏变色
+ * setColorNoTranslucentForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int color) 为DrawerLayout 布局设置状态栏颜色,纯色
+ * setColorForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int color, int statusBarAlpha) 为DrawerLayout 布局设置状态栏变色
+ * setColorForDrawerLayoutDiff(Activity activity, DrawerLayout drawerLayout, int color) 为DrawerLayout 布局设置状态栏变色(5.0以下无半透明效果,不建议使用)
+ * setTranslucentForDrawerLayout(Activity activity, DrawerLayout drawerLayout) 为 DrawerLayout 布局设置状态栏透明
+ * setTranslucentForDrawerLayout(Activity activity, DrawerLayout drawerLayout, int statusBarAlpha) 为 DrawerLayout 布局设置状态栏透明
+ * setTransparentForDrawerLayout(Activity activity, DrawerLayout drawerLayout) 为 DrawerLayout 布局设置状态栏透明
+ * setTranslucentForDrawerLayoutDiff(Activity activity, DrawerLayout drawerLayout) 为 DrawerLayout 布局设置状态栏透明(5.0以上半透明效果,不建议使用)
+ * addTranslucentView(Activity activity, int statusBarAlpha)  添加半透明矩形条
+ * createStatusBarView(Activity activity, int color) 生成一个和状态栏大小相同的彩色矩形条
+ * createStatusBarView(Activity activity, int color, int alpha) 生成一个和状态栏大小相同的半透明矩形条
+ * setRootView(Activity activity) 设置根布局参数
+ * transparentStatusBar(Activity activity) 使状态栏透明
+ * createTranslucentStatusBarView(Activity activity, int alpha) 创建半透明矩形 View
+ * getStatusBarHeight(Context context) 获取状态栏高度
+ * calculateStatusColor(int color, int alpha) 计算状态栏颜色
+ * setTranslucentForImageView(Activity activity) 为有 ImageView 的Activity 添加半透明状态栏
  * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
@@ -34,7 +59,7 @@ public class StatusBarUtil {
     }
 
     /**
-     * 设置状态栏颜色
+     * 设置状态栏颜色和透明度
      *
      * @param activity       需要设置的activity
      * @param color          状态栏颜色值

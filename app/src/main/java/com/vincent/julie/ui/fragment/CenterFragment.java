@@ -32,7 +32,7 @@ public class CenterFragment extends BackHandledFragment {
     TextView tvSendBroadcastReceiver;
 
     private View view;
-    private AnFQNumEditText anetDemo;
+
 
 
     @Nullable
@@ -42,14 +42,6 @@ public class CenterFragment extends BackHandledFragment {
             view = inflater.inflate(R.layout.main_frg_center, null);
         }
         ButterKnife.bind(this, view);
-
-        anetDemo = (AnFQNumEditText) view.findViewById(R.id.tv_custom);
-        anetDemo.setEtHint("内容")//设置提示文字
-                .setEtMinHeight(200)//设置最小高度，单位px
-                .setLength(50)//设置总字数
-                .setType(AnFQNumEditText.SINGULAR)//TextView显示类型(SINGULAR单数类型)(PERCENTAGE百分比类型)
-                .setLineColor("#3F51B5")//设置横线颜色
-                .show();
         SystemUtilts.getReflectInstance(getContext(), "com.vincent.julie.entity.Food");
         System.out.print("--------------------");
 //        SystemUtilts.getReflectInstance(getContext(), "com.huawei.systemmanager.mainscreen.MainScreenActivity");
