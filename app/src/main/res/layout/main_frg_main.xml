@@ -47,4 +47,11 @@
         android:id="@+id/btn_go_interception"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:gravity="center"
+        android:text="TestActivity"
+        android:id="@+id/btn_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

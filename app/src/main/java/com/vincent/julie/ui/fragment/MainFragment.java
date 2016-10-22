@@ -1,5 +1,6 @@
 package com.vincent.julie.ui.fragment;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.vincent.julie.R;
+import com.vincent.julie.ui.activity.InternetActivity;
 import com.vincent.julie.util.SystemUtilts;
 
 import butterknife.BindView;
@@ -41,6 +43,8 @@ public class MainFragment extends BackHandledFragment {
     Button btnCliearMemory;
     @BindView(R.id.btn_go_interception)
     Button btnInterception;
+    @BindView(R.id.btn_test)
+    Button btnTestActivity;
     private View view;
 
 
@@ -63,7 +67,7 @@ public class MainFragment extends BackHandledFragment {
 
     @OnClick({R.id.btn_go_permission_act, R.id.btn_go_windows_permission,R.id.btn_go_notification_manager,
             R.id.btn_go_protect_act, R.id.btn_go_self_motion_start,R.id.btn_relevance_start,
-            R.id.btn_go_clear_memory,R.id.btn_go_interception})
+            R.id.btn_go_clear_memory,R.id.btn_go_interception,R.id.btn_test})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_go_permission_act:
@@ -89,6 +93,11 @@ public class MainFragment extends BackHandledFragment {
                 break;
             case R.id.btn_go_interception:
                 SystemUtilts.goInterceptionAct();
+                break;
+            case R.id.btn_test:
+                Intent intent=new Intent(getActivity(), InternetActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.vincent.julie.R;
 import com.vincent.julie.app.BaseActivity;
@@ -47,8 +48,10 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class SendMsgActivity extends BaseActivity {
 
-    private static final String TAG=SendMsgActivity.class.getSimpleName();
-    private String SENT_SMS_ACTION = "SENT_SMS_ACTION";	//发送状态回执广播的Action
+    private static final String TAG = SendMsgActivity.class.getSimpleName();
+    @BindView(R.id.tv_internet)
+    TextView tvInternet;
+    private String SENT_SMS_ACTION = "SENT_SMS_ACTION";    //发送状态回执广播的Action
     private String DELIVERED_SMS_ACTION = "DELIVERED_SMS_ACTION"; //接受状态回执广播的Action
 
     @BindView(R.id.tv_custom)
@@ -75,6 +78,13 @@ public class SendMsgActivity extends BaseActivity {
     public void onClick(View v) {
 
     }
+    @OnClick(R.id.tv_internet)
+    public void onClick() {
+        Intent intent=new Intent(SendMsgActivity.this,InternetActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -105,7 +115,7 @@ public class SendMsgActivity extends BaseActivity {
             public void SendMsg(String msgConent) {
 //                ToastUtils.showSingleTextToast(MyApplication.getInstance(),"操作数据："+msgConent);
 //                SendSMS(msgConent);
-                SendMsgActivityPermissionsDispatcher.sendSMSWithCheck(SendMsgActivity.this,msgConent);
+                SendMsgActivityPermissionsDispatcher.sendSMSWithCheck(SendMsgActivity.this, msgConent);
             }
         });
 
@@ -117,25 +127,26 @@ public class SendMsgActivity extends BaseActivity {
 
     /**
      * 发送短信
+     *
      * @param msgConent
      */
-    @NeedsPermission({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS})
+    @NeedsPermission({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE, Manifest.permission.PROCESS_OUTGOING_CALLS})
     void sendSMS(String msgConent) {
         send(msgConent);
     }
 
-    @OnShowRationale({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS})
+    @OnShowRationale({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE, Manifest.permission.PROCESS_OUTGOING_CALLS})
     void showRationaleForSendSMS(PermissionRequest request) {
         showRationaleDialog("发送短信必须动态授权", request);
     }
 
-    @OnPermissionDenied({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS})
+    @OnPermissionDenied({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE, Manifest.permission.PROCESS_OUTGOING_CALLS})
     void sendSMSDenied() {
         ToastUtils.showDefaultToast(getApplicationContext(), "您拒绝了授予权限，无法发送");
     }
 
     //拒绝权限不再弹出权限提示框
-    @OnNeverAskAgain({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS})
+    @OnNeverAskAgain({Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS, Manifest.permission.CALL_PHONE, Manifest.permission.PROCESS_OUTGOING_CALLS})
     void sendSMSNeverAskAgain() {
         ToastUtils.showDefaultToast(getApplicationContext(), "不再允许询问该权限，该功能不可用");
     }
@@ -168,16 +179,17 @@ public class SendMsgActivity extends BaseActivity {
 
     /**
      * 具体实施发送短信
+     *
      * @param msgConent
      */
     private void send(String msgConent) {
 //        ToastUtils.showSingleTextToast(MyApplication.getInstance(),"就不发了，短信操作不写这里了");
-        View view= LayoutInflater.from(this).inflate(R.layout.dlg_input_phone_num,null);
-        ImageView ivClear=(ImageView)view.findViewById(R.id.iv_clear_all);
-        EditText etPhoneNum=(EditText)view.findViewById(R.id.et_input_phone);
+        View view = LayoutInflater.from(this).inflate(R.layout.dlg_input_phone_num, null);
+        ImageView ivClear = (ImageView) view.findViewById(R.id.iv_clear_all);
+        EditText etPhoneNum = (EditText) view.findViewById(R.id.et_input_phone);
         //TODO 自动弹出软键盘
         SystemUtilts.getInputKeyboard(etPhoneNum);
-        TextWatcher watcher=new TextWatcher() {
+        TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -206,15 +218,15 @@ public class SendMsgActivity extends BaseActivity {
             }
         });
         new AlertDialog.Builder(this)
-            .setTitle("请输入手机号码")
+                .setTitle("请输入手机号码")
                 .setView(view)
                 .setPositiveButton("发送", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(etPhoneNum.getText().toString().equals("")){
-                            ToastUtils.showSingleTextToast(MyApplication.getInstance(),"请输入号码");
-                        }else {
-                            sendMsg(etPhoneNum.getText().toString().trim(),msgConent);
+                        if (etPhoneNum.getText().toString().equals("")) {
+                            ToastUtils.showSingleTextToast(MyApplication.getInstance(), "请输入号码");
+                        } else {
+                            sendMsg(etPhoneNum.getText().toString().trim(), msgConent);
                         }
                     }
                 })
@@ -226,13 +238,14 @@ public class SendMsgActivity extends BaseActivity {
                 }).show();
 
     }
+
     /**
      * 调用此方法发送短信
      *
      * @param phoneNum
      * @param addressInfo
      */
-    public  void sendMsg(String phoneNum, String addressInfo) {
+    public void sendMsg(String phoneNum, String addressInfo) {
         try {
             SmsManager smsManager = SmsManager.getDefault();//初始化消息实例
 
@@ -249,7 +262,7 @@ public class SendMsgActivity extends BaseActivity {
                     deliverIntent, 0);
 
             if (addressInfo.length() > 70) {
-                Log.d(TAG,"addressInfo.length="+addressInfo.length());
+                Log.d(TAG, "addressInfo.length=" + addressInfo.length());
                 ArrayList<String> texts = smsManager.divideMessage(addressInfo);//自动拆分短信
                 for (String text : texts) {
                     smsManager.sendTextMessage(
@@ -261,7 +274,7 @@ public class SendMsgActivity extends BaseActivity {
                     );
                 }
             } else {
-                Log.d(TAG,"addressInfo.length="+addressInfo.length());
+                Log.d(TAG, "addressInfo.length=" + addressInfo.length());
                 smsManager.sendTextMessage(
                         phoneNum,//目标电话号码
                         null,//短信中心电话号码为null时，使用系统默认
@@ -272,9 +285,10 @@ public class SendMsgActivity extends BaseActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.showDefaultToast(MyApplication.getInstance(),"发送失败");
+            ToastUtils.showDefaultToast(MyApplication.getInstance(), "发送失败");
         }
     }
+
     /**
      * 短信发送状态的广播接收者
      */
@@ -287,11 +301,11 @@ public class SendMsgActivity extends BaseActivity {
                 case Activity.RESULT_OK:
 //                    recordAfterSendSms(sendPhoneNumber, sendMsg);	//短信发送成功时才在"已发送"里记录
                     Log.i(TAG, "短信发送成功");
-                    ToastUtils.showDefaultToast(getApplicationContext(),"短信发送成功");
+                    ToastUtils.showDefaultToast(getApplicationContext(), "短信发送成功");
                     tvCustom.clearText();
                     break;
                 default:
-                    ToastUtils.showDefaultToast(getApplicationContext(),"短信发送失败");
+                    ToastUtils.showDefaultToast(getApplicationContext(), "短信发送失败");
                     Log.i(TAG, "短信发送失败");
                     break;
             }
@@ -300,7 +314,7 @@ public class SendMsgActivity extends BaseActivity {
 
     /**
      * 短信接收状态的广播接收者
-     *
+     * <p>
      * <p>
      * 接收状态一直没有试出来,有待完善,哪位大哥整出来这个了还请指教下
      */
@@ -310,7 +324,9 @@ public class SendMsgActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             //表示对方成功收到短信
             Log.i(TAG, "对方接收成功");
-            ToastUtils.showDefaultToast(getApplicationContext(),"对方已接受");
+            ToastUtils.showDefaultToast(getApplicationContext(), "对方已接受");
         }
     };
+
+
 }

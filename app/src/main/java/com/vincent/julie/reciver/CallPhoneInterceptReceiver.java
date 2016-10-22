@@ -9,6 +9,11 @@ import android.telephony.TelephonyManager;
 
 import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.logs.MyLog;
+import com.vincent.julie.util.DateUtil;
+
+import java.util.Date;
+
+import static cn.jpush.android.util.ag.d;
 
 /**
  * 注意权限问题
@@ -33,11 +38,11 @@ public class CallPhoneInterceptReceiver extends BroadcastReceiver {
                     case TelephonyManager.CALL_STATE_IDLE: //空闲
                         MyLog.d(CallPhoneInterceptReceiver.class.getSimpleName(),"空闲状态");
                         break;
-                    case TelephonyManager.CALL_STATE_RINGING: //来电
-                        MyLog.w(CallPhoneInterceptReceiver.class.getSimpleName(),"来电:"+num);
+                    case TelephonyManager.CALL_STATE_RINGING: //来电响铃时
+                        MyLog.w(CallPhoneInterceptReceiver.class.getSimpleName(),"来电:"+num+",时间="+DateUtil.getCurrentTime());
                         break;
                     case TelephonyManager.CALL_STATE_OFFHOOK: //摘机（正在通话中）
-                        MyLog.w(CallPhoneInterceptReceiver.class.getSimpleName(),"正在通话中:"+num);
+                        MyLog.w(CallPhoneInterceptReceiver.class.getSimpleName(),"正在通话中:"+num+",时间="+DateUtil.getCurrentTime());
                         break;
                 }
                 super.onCallStateChanged(state, num);
@@ -66,7 +71,6 @@ public class CallPhoneInterceptReceiver extends BroadcastReceiver {
             MyLog.d("手机状态", "call in:" + phoneNumber);
         }
     }
-
 }
 
 

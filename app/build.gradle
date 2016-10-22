@@ -62,6 +62,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.android.support:support-v4:24.2.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
     //volley
     compile 'com.navercorp.volleyextensions:volley-views:2.0.1'
     //MD5加密

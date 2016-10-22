@@ -40,27 +40,27 @@ public class JiGuangPushReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-        MyLog.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
+        MyLog.d(TAG, "[JiGuangPushReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
-            MyLog.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
+            MyLog.d(TAG, "[JiGuangPushReceiver] 接收Registration Id : " + regId);
             //send the Registration Id to your server...
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            MyLog.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+            MyLog.d(TAG, "[JiGuangPushReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
             processCustomMessage(context, bundle);
             String content=bundle.getString(JPushInterface.EXTRA_MESSAGE);//这是自定义消息
             //// TODO: 2016/10/19  
             NotificationUtils.sendNotification(MyApplication.getInstance(),"com.vincent.julie.ui.activity.PushMessageActivity", R.mipmap.ic_launcher,"Julie",content);
             
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
-            MyLog.d(TAG, "[MyReceiver] 接收到推送下来的通知");
+            MyLog.d(TAG, "[JiGuangPushReceiver] 接收到推送下来的通知");
             int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-            MyLog.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
+            MyLog.d(TAG, "[JiGuangPushReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-            MyLog.d(TAG, "[MyReceiver] 用户点击打开了通知");
+            MyLog.d(TAG, "[JiGuangPushReceiver] 用户点击打开了通知");
 
             //打开自定义的Activity
             Intent i = new Intent(context, PushMessageActivity.class);
@@ -70,14 +70,14 @@ public class JiGuangPushReceiver extends BroadcastReceiver {
             context.startActivity(i);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
-            MyLog.d(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
+            MyLog.d(TAG, "[JiGuangPushReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
             //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
 
         } else if(JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {
             boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
-            MyLog.w(TAG, "[MyReceiver]" + intent.getAction() +" connected state change to "+connected);
+            MyLog.w(TAG, "[JiGuangPushReceiver]" + intent.getAction() +" connected state change to "+connected);
         } else {
-            MyLog.d(TAG, "[MyReceiver] Unhandled intent - " + intent.getAction());
+            MyLog.d(TAG, "[JiGuangPushReceiver] Unhandled intent - " + intent.getAction());
         }
     }
 
