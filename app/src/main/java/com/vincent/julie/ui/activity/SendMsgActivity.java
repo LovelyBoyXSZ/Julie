@@ -75,6 +75,13 @@ public class SendMsgActivity extends BaseActivity {
     public void onClick(View v) {
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //解除注册
+        unregisterReceiver(sendMessage);
+        unregisterReceiver(receiver);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,9 +5,12 @@
     <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
     <uses-permission android:name="android.permission.READ_SMS"></uses-permission>//读取信息
     <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.CAMERA"/>//相机
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />//开机自启动
     <uses-permission android:name="android.permission.BIND_JOB_SERVICE"/>
+
 
     <permission
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
@@ -128,6 +131,19 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".reciver.SMSInterceptReceiver">
+            <intent-filter
+                android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".reciver.CallPhoneInterceptReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+        </receiver>
 
         <!--极光推送配置-->
 
