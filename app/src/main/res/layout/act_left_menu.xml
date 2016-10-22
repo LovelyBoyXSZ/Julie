@@ -1,31 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/common_color_gray_1"
+    android:background="@drawable/icon_chun_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@mipmap/img_sec"
-        android:layout_margin="@dimen/size_15"
-        app:civ_border_width="2dp"
-        app:civ_border_color="@color/common_color_white"/>
-
-    <TextView
-        android:id="@+id/tv_send_msg"
-        android:layout_marginLeft="@dimen/size_15"
-        android:layout_marginRight="@dimen/size_15"
-        android:background="@drawable/shape_send_msg"
-        android:gravity="center"
-        android:textSize="@dimen/size_18sp"
-        android:textColor="@color/common_color_white"
-        android:text="发短信"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_50" />
+        android:layout_height="@dimen/size_150"
+        android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/img_sec"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/common_color_white"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_send_msg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50"
+        android:background="@drawable/shape_send_msg"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/size_15"
+            android:src="@drawable/icon_sms"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/size_15"
+            android:textSize="@dimen/size_16sp"
+            android:textColor="@color/common_color_white"
+            android:text="短信发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 
     <Button
         android:text="fff"

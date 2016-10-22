@@ -70,6 +70,7 @@
         <activity android:name=".ui.activity.JiGuangPushActivity"/>
         <activity android:name=".ui.activity.PushMessageActivity"/>
         <activity android:name=".ui.activity.SendMsgActivity"/>
+        <activity android:name=".ui.activity.CallInterceptActivity"/>
 
         <!--Service 相关-->
         <!--priority 配置Service优先级 1000为最高-->
