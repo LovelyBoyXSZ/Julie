@@ -73,24 +73,41 @@ dependencies {
     //二维码扫描库
     compile project(path: ':libqrcode')
     //图片加载缓存库
+
     //    compile 'com.squareup.picasso:picasso:2.3.2'
+
     //    compile files('libs/universal-image-loader-1.9.3.jar')
+
     //    图片加载图、包括本地图片，网络图片
+
     //    compile 'com.facebook.fresco:fresco:0.13.0'
+
     //    compile 'com.facebook.fresco:animated-base-support:0.12.0'
+
     // 在 API < 14 上的机器支持 WebP 时，需要添加
+
     //    compile 'com.facebook.fresco:animated-gif:0.12.0'
+
     // 支持 GIF 动图，需要添加
+
     //    compile 'com.facebook.fresco:animated-webp:0.12.0'
+
     // 支持 WebP （静态图+动图），需要添加
+
     //    compile 'com.facebook.fresco:webpsupport:0.12.0'
+
     //    compile 'com.facebook.fresco:webpsupport:0.12.0'
+
     //图片选择库，使用说明：github:https://github.com/crazycodeboy/TakePhoto https://github.com/crazycodeboy/TakePhoto/blob/master/README.md
     compile 'com.jph.takephoto:takephoto_library:3.0.0'
     //glide比Picasso占用内存更小，加载速度更快，默认图片加载的质量不如Picasso glide默认为RGB565  Picasso默认为ARGB8888
+
     //google推荐的图片加载库，介绍：http://blog.csdn.net/fancylovejava/article/details/44747759
+
     //    Glide.with(context)
+
     //            .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+
     //            .into(ivImg);
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //Retrolambda的使用 设置说明：http://www.open-open.com/lib/view/open1433898197176.html
@@ -102,6 +119,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+
     //OkGo网络访问框架
     compile 'com.lzy.net:okgo:+'
     //版本号使用 + 可以自动引用最新版  okgo使用的okhttp的版本是最新的 3.4.1 版本，和以前的 2.x 的版本可能会存在冲突。
@@ -109,27 +127,50 @@ dependencies {
     //版本号使用 + 可以自动引用最新版 okrx是基于RxJava和RxAndroid的扩展,如果不需要可以不必引入
     compile 'com.lzy.net:okserver:+'
     //版本号使用 + 可以自动引用最新版 okserver是对okgo的扩展，统一了下载管理和上传管理，对项目有需要做统一下载的可以考虑使用该扩展，不需要的可以直接使用okgo即可。
+
     //对于缓存模式使用，需要与返回对象相关的所有javaBean必须实现Serializable接口，否者会报NotSerializableException。
+
     //使用缓存时，如果不指定cacheKey，默认是用url带参数的全路径名为cacheKey。
+
     //使用该网络框架时，必须要在 Application 中做初始化 OkGo.init(this);。
+
     //极光推送
+
     //    compile 'cn.jiguang:jpush:2.1.8'
-   //    compile files('libs/jpush-android-2.2.0.jar')
+
+    //    compile files('libs/jpush-android-2.2.0.jar')
+
     //可选，用于生成application类
-//    compile('com.tencent.tinker:tinker-android-anno:1.7.0')
+
+    //    compile('com.tencent.tinker:tinker-android-anno:1.7.0')
+
     //tinker的核心库
-//    compile('com.tencent.tinker:tinker-android-lib:1.7.0')
-    compile 'de.hdodenhof:circleimageview:2.1.0'//圆形头像  https://github.com/hdodenhof/CircleImageView
-//    compile 'com.github.mmin18:flexlayout:1.2.6'//简化布局的框架 github address:https://github.com/mmin18/FlexLayout
+
+    //    compile('com.tencent.tinker:tinker-android-lib:1.7.0')
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //圆形头像  https://github.com/hdodenhof/CircleImageView
+
+    //    compile 'com.github.mmin18:flexlayout:1.2.6'//简化布局的框架 github address:https://github.com/mmin18/FlexLayout
+
     //android开发之Logger神器 http://blog.csdn.net/yy1300326388/article/details/45825343 颜色配置：http://blog.csdn.net/yy1300326388/article/details/45825123
     compile 'com.orhanobut:logger:1.8'
     //神器调用：Logger.d("hello");
+
     // Logger.e("hello");
+
     // Logger.w("hello");
+
     // Logger.v("hello");
+
     //Logger.wtf("hello");
+
     //Logger.json(JSON_CONTENT);//支持了Json哦
+
     //Logger.xml(XML_CONTENT);//支持XML
+
     //解决65535方法数限制，通过分割Dex文件解决
-    compile 'com.android.support:multidex:1.0.1' //http://www.jianshu.com/p/f68b0b070c31
+    compile 'com.android.support:multidex:1.0.1'
+    //http://www.jianshu.com/p/f68b0b070c31
+    //gson解析
+    compile 'com.google.code.gson:gson:2.7'
 }

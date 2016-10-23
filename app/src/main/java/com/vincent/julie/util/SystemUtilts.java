@@ -3,7 +3,6 @@ package com.vincent.julie.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,11 +11,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
-import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.text.format.Formatter;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -82,12 +78,12 @@ public class SystemUtilts {
      * @return
      */
     public static String getPhoneMdel() {
-        String s = Build.MODEL;
-        if (TextUtils.isEmpty(s)) {
-            return "未知";
+        try {
+            return Build.MODEL;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
         }
-        return s;
-
     }
 
     /**
@@ -96,12 +92,42 @@ public class SystemUtilts {
      * @return
      */
     public static String getPhoneManufacturer() {
-        String phoneManufacturer = Build.MANUFACTURER;
-        return phoneManufacturer;
+        try {
+            return Build.MANUFACTURER;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
     }
 
+    /**
+     * 系统版本
+     * @return
+     */
     public static String getVersionOs() {
-        return Build.VERSION.RELEASE;
+        try {
+            return Build.VERSION.RELEASE;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
+    }
+
+    /**
+     * 返回SDK版本号
+     *
+     * @return
+     */
+    public static String getAndroidSDKVersionStr() {
+        int version = 0;
+        try {
+            version = Integer.valueOf(Build.VERSION.SDK);
+                return Build.VERSION.SDK;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            MyLog.e("获取系统版本号失败",e.toString());
+            return "获取失败";
+        }
     }
 
     /**
@@ -109,7 +135,7 @@ public class SystemUtilts {
      *
      * @return
      */
-    public static int getAndroidSDKVersion() {
+    public static int getAndroidSDKVersionInt() {
         int version = 0;
         try {
             version = Integer.valueOf(Build.VERSION.SDK);
@@ -132,7 +158,6 @@ public class SystemUtilts {
 
         String str1 = "/proc/cpuinfo";
         String str2 = "";
-
         try {
             FileReader fr = new FileReader(str1);
             BufferedReader localBufferedReader = new BufferedReader(fr);
@@ -143,9 +168,10 @@ public class SystemUtilts {
             }
             localBufferedReader.close();
         } catch (IOException e) {
+            e.printStackTrace();
+            return "cpu信息获取失败";
         }
-        return null;
-
+        return "获取失败";
     }
 
     /**
@@ -182,8 +208,8 @@ public class SystemUtilts {
             return telephonyManager.getLine1Number();
         }catch (Exception e){
             e.printStackTrace();
+            return "获取失败";
         }
-        return "number is null";
     }
 
     /**
@@ -201,6 +227,8 @@ public class SystemUtilts {
 // System.out.println(">>>>>>><<<<<<<" +(String)result);
             Version = (String) result;
         } catch (Exception e) {
+            e.printStackTrace();
+            return "获取失败";
         }
         return Version;
     }
@@ -244,6 +272,7 @@ public class SystemUtilts {
             }
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
+            return "获取失败";
         }
         return kernelVersion;
     }
@@ -254,13 +283,18 @@ public class SystemUtilts {
      * return String
      */
     public static String getInner_Ver() {
-        String ver = "";
-        if (Build.DISPLAY.contains(Build.VERSION.INCREMENTAL)) {
-            ver = Build.DISPLAY;
-        } else {
-            ver = Build.VERSION.INCREMENTAL;
+        try {
+            String ver = "";
+            if (Build.DISPLAY.contains(Build.VERSION.INCREMENTAL)) {
+                ver = Build.DISPLAY;
+            } else {
+                ver = Build.VERSION.INCREMENTAL;
+            }
+            return ver;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
         }
-        return ver;
     }
 
     /**
@@ -270,18 +304,22 @@ public class SystemUtilts {
      * @return
      */
     public static String getPhoneRAM(Context context) {
-//        要获取手机的可用内存，首先要获取系统服务信息，
-        ActivityManager myActivityManager = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
+        try {
+            //        要获取手机的可用内存，首先要获取系统服务信息，
+            ActivityManager myActivityManager = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
 //        然后获得MemoryInfo类型对象
-        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+            ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
 //        然后，使用getMemoryInfo(memoryInfo)方法获得系统可用内存，此方法将内存大小保存在memoryInfo对象上
-        myActivityManager.getMemoryInfo(memoryInfo);
+            myActivityManager.getMemoryInfo(memoryInfo);
 //        然后，memoryInfo对象上的availmem值即为所求
-        long memSize = memoryInfo.availMem;
+            long memSize = memoryInfo.availMem;
 //        字符类型转换 ，转换成MB格式。
-        String leftMemSize = Formatter.formatFileSize(context, memSize);
-
-        return leftMemSize;
+            String leftMemSize = Formatter.formatFileSize(context, memSize);
+            return leftMemSize;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
     }
 
     /**
@@ -309,11 +347,11 @@ public class SystemUtilts {
             //转为以byte为单位
             size *= 1024;
             d = (Double) (size / 1024.0 / 1024.0 / 1024.0);//转换单位为G
+            return String.valueOf(new DecimalFormat("#.00").format(d));//保留两位小数
         } catch (Exception e) {
             e.printStackTrace();
+            return "获取失败";
         }
-        //保留两位小数
-        return String.valueOf(new DecimalFormat("#.00").format(d));
     }
 
 
@@ -323,16 +361,20 @@ public class SystemUtilts {
      * @return
      * @throws Exception
      */
-    public static boolean isRoot() throws Exception {
-        boolean isRoot = false;
-        File su = new File("/system/bin/su");
-        File su2 = new File("/system/bin/su");
-        if (su.exists() && su2.exists()) {
-            isRoot = true;
-        } else {
-            isRoot = false;
+    public static boolean isRoot(){
+        try {
+            boolean isRoot = false;
+            File su = new File("/system/bin/su");
+            File su2 = new File("/system/bin/su");
+            if (su.exists() && su2.exists()) {
+                isRoot = true;
+            } else {
+                isRoot = false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return isRoot;
+        return false;
     }
 
     /**
@@ -442,8 +484,13 @@ public class SystemUtilts {
      **/
     @SuppressLint("NewApi")
     public static String getMemFree(Context context) {
-        StatFs fs = new StatFs(Environment.getDataDirectory().getPath());
-        return Formatter.formatFileSize(context, (fs.getAvailableBytes()));
+        try {
+            StatFs fs = new StatFs(Environment.getDataDirectory().getPath());
+            return Formatter.formatFileSize(context, (fs.getAvailableBytes()));
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
     }
 
     /**
@@ -453,15 +500,20 @@ public class SystemUtilts {
      * @return
      */
     public static String getSDSize(Context context) {
-        File path = Environment.getExternalStorageDirectory();//得到SD卡的路径
-        StatFs stat = new StatFs(path.getPath());//创建StatFs对象，用来获取文件系统的状态
-        long blockCount = stat.getBlockCount();
-        long blockSize = stat.getBlockSize();
-        long availableBlocks = stat.getAvailableBlocks();
-        String totalSize = Formatter.formatFileSize(context, blockCount * blockSize);//格式化获得SD卡总容量
-        String availableSize = Formatter.formatFileSize(context, blockCount * availableBlocks);//获得SD卡可用容量
+        try {
+            File path = Environment.getExternalStorageDirectory();//得到SD卡的路径
+            StatFs stat = new StatFs(path.getPath());//创建StatFs对象，用来获取文件系统的状态
+            long blockCount = stat.getBlockCount();
+            long blockSize = stat.getBlockSize();
+            long availableBlocks = stat.getAvailableBlocks();
+            String totalSize = Formatter.formatFileSize(context, blockCount * blockSize);//格式化获得SD卡总容量
+            String availableSize = Formatter.formatFileSize(context, blockCount * availableBlocks);//获得SD卡可用容量
 //        tv.setText("SD卡总容量:"+totalSize+"\nSD卡可用容量:"+availableSize+"\n"+getRomSpace());
-        return totalSize;
+            return totalSize;
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
     }
 
     /**
@@ -470,12 +522,17 @@ public class SystemUtilts {
      * @return
      */
     public static String getSDTotalSize(Context context) {
-        File path = Environment.getExternalStorageDirectory();
-        StatFs stat = new StatFs(path.getPath());
-        long blockSize = stat.getBlockSize();
-        long totalBlocks = stat.getBlockCount();
-        MyLog.d("size", Formatter.formatFileSize(context, blockSize * totalBlocks));
-        return Formatter.formatFileSize(context, blockSize * totalBlocks);
+        try {
+            File path = Environment.getExternalStorageDirectory();
+            StatFs stat = new StatFs(path.getPath());
+            long blockSize = stat.getBlockSize();
+            long totalBlocks = stat.getBlockCount();
+            MyLog.d("size", Formatter.formatFileSize(context, blockSize * totalBlocks));
+            return Formatter.formatFileSize(context, blockSize * totalBlocks);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "获取失败";
+        }
     }
 
 
@@ -487,21 +544,26 @@ public class SystemUtilts {
      * @return true 在运行 false 不在运行
      */
     public static boolean isServiceWork(Context mContext, String serviceName) {
-        boolean isWork = false;
-        ActivityManager myAM = (ActivityManager) mContext
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(40);
-        if (myList.size() <= 0) {
+        try {
+            boolean isWork = false;
+            ActivityManager myAM = (ActivityManager) mContext
+                    .getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(40);
+            if (myList.size() <= 0) {
+                return false;
+            }
+            for (int i = 0; i < myList.size(); i++) {
+                String mName = myList.get(i).service.getClassName().toString();
+                if (mName.equals(serviceName)) {
+                    isWork = true;
+                    break;
+                }
+            }
+            return isWork;
+        }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
-        for (int i = 0; i < myList.size(); i++) {
-            String mName = myList.get(i).service.getClassName().toString();
-            if (mName.equals(serviceName)) {
-                isWork = true;
-                break;
-            }
-        }
-        return isWork;
     }
 
     /**

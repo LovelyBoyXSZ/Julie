@@ -44,6 +44,7 @@ import com.vincent.julie.util.SystemUtilts;
 import com.vincent.julie.util.ToastUtils;
 import com.vincent.julie.view.SelectPicPopupWindow;
 import com.vincent.julie.view.SlidingMenu;
+import com.vincent.julie.view.ThreeDLayout;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,7 +96,10 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
         tool.addSelectedViews(new View[]{ivChat, tvChat}).addSelectedViews(new View[]{ivFriends, tvFriends})
                 .addSelectedViews(new View[]{ivContacts, tvContacts}).addSelectedViews(new View[]{ivSettings, tvSettings});
         tool.setFragments(MainFragment.class, LeftFragment.class, CenterFragment.class, RightFragmet.class);
-        tool.changeTag(llChat);
+        if (llChat != null) {
+            tool.changeTag(llChat);
+        }
+
         //侧滑菜单相关
         menuWindow = new SelectPicPopupWindow(MainActivity.this, itemsOnClick);//选择照片
     }
@@ -104,7 +108,7 @@ public class MainActivity extends FragmentActivity implements BackHandledInterfa
      * 此方法配置顶部状态栏颜色
      */
     private void setStatusBar() {
-        if (SystemUtilts.getAndroidSDKVersion() > 19 || SystemUtilts.getAndroidSDKVersion() == 19) {
+        if (SystemUtilts.getAndroidSDKVersionInt() > 19 || SystemUtilts.getAndroidSDKVersionInt() == 19) {
             StatusBarUtil.setColor(this, getResources().getColor(R.color.common_color_green), 1);//int类型的值控制透明度
         } else {
             StatusBarUtil.setColor(this, getResources().getColor(R.color.common_color_green));

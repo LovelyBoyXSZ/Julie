@@ -130,13 +130,19 @@ public class MyApplication extends Application {
      * created at 2016/9/26 11:54
      */
     public static int getScreenParameterWidth() {
-        DisplayMetrics metric = new DisplayMetrics();
-        WindowManager mWindowManager = (WindowManager) getInstance().getSystemService(Context.WINDOW_SERVICE);
-        mWindowManager.getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels; // 屏幕宽度（像素）
-        int height = metric.heightPixels; // 屏幕宽度（像素）
-        int w = width + height;
-        return width;
+        try {
+            DisplayMetrics metric = new DisplayMetrics();
+            WindowManager mWindowManager = (WindowManager) getInstance().getSystemService(Context.WINDOW_SERVICE);
+            mWindowManager.getDefaultDisplay().getMetrics(metric);
+            int width = metric.widthPixels; // 屏幕宽度（像素）
+            int height = metric.heightPixels; // 屏幕宽度（像素）
+            int w = width + height;
+            return width;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+
     }
 
     /**
@@ -146,12 +152,17 @@ public class MyApplication extends Application {
      * created at 2016/9/26 11:54
      */
     public static int getScreenParameterHeight() {
-        DisplayMetrics metric = new DisplayMetrics();
-        WindowManager mWindowManager = (WindowManager) getInstance().getSystemService(Context.WINDOW_SERVICE);
-        mWindowManager.getDefaultDisplay().getMetrics(metric);
-        int width = metric.widthPixels; // 屏幕宽度（像素）
-        int height = metric.heightPixels; // 屏幕宽度（像素）
-        int w = width + height;
-        return height;
+        try {
+            DisplayMetrics metric = new DisplayMetrics();
+            WindowManager mWindowManager = (WindowManager) getInstance().getSystemService(Context.WINDOW_SERVICE);
+            mWindowManager.getDefaultDisplay().getMetrics(metric);
+            int width = metric.widthPixels; // 屏幕宽度（像素）
+            int height = metric.heightPixels; // 屏幕宽度（像素）
+            int w = width + height;
+            return height;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }
