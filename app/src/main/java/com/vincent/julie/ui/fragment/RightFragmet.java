@@ -18,6 +18,7 @@ import com.vincent.julie.ui.activity.QrScodeUtilsActivity;
 import com.vincent.julie.ui.activity.RetrofitActivity;
 import com.vincent.julie.ui.activity.RxJavaTestActivity;
 import com.vincent.julie.ui.activity.SettingActivity;
+import com.vincent.julie.ui.activity.TestActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +48,8 @@ public class RightFragmet extends BackHandledFragment {
     TextView tvOkGo;
     @BindView(R.id.tv_jiguang_push)
     TextView tvJiGuangPush;
+    @BindView(R.id.tv_magnify)
+    TextView tvMagnify;
     private View view;
 
 
@@ -66,7 +69,7 @@ public class RightFragmet extends BackHandledFragment {
     }
 
     @OnClick({R.id.ll_mainfrg_phone_info, R.id.ll_mainfrg_setting,R.id.ll_mainfrg_qr_code,
-    R.id.ll_rxjava,R.id.tv_retrofit,R.id.tv_okgo,R.id.tv_jiguang_push})
+    R.id.ll_rxjava,R.id.tv_retrofit,R.id.tv_okgo,R.id.tv_jiguang_push,R.id.tv_magnify})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_mainfrg_phone_info:
@@ -103,6 +106,11 @@ public class RightFragmet extends BackHandledFragment {
                 Intent jiGuang=new Intent(getActivity(), JiGuangPushActivity.class);
                 jiGuang.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(jiGuang);
+                break;
+            case R.id.tv_magnify:
+                Intent magnify=new Intent(getActivity(), TestActivity.class);
+                magnify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(magnify);
                 break;
             default:
                 break;

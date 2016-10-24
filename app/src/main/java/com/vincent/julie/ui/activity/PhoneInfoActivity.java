@@ -7,9 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.vincent.julie.R;
@@ -17,7 +15,6 @@ import com.vincent.julie.app.BaseActivity;
 import com.vincent.julie.app.MyApplication;
 import com.vincent.julie.entity.PhoneInfo;
 import com.vincent.julie.listener.PhoneInfoListener;
-import com.vincent.julie.logs.MyLog;
 import com.vincent.julie.ui.adapter.PhoneInfoAdapter;
 import com.vincent.julie.util.SystemUtilts;
 import com.vincent.julie.util.ToastUtils;
@@ -255,15 +252,6 @@ public class PhoneInfoActivity extends BaseActivity {
                 .setCancelable(false)
                 .setMessage(messageResId)
                 .show();
-    }
-
-
-    private String getResolutionRatio() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        String s = dm.widthPixels + "*" + dm.heightPixels;
-        MyLog.d("data", s);
-        return s;
     }
 
     @Override

@@ -142,8 +142,9 @@ public class MyApplication extends Application {
             e.printStackTrace();
             return 0;
         }
-
     }
+
+
 
     /**
      * 屏幕高度

@@ -123,4 +123,11 @@
         android:text="极光推送Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:padding="@dimen/size_10"
+        android:id="@+id/tv_magnify"
+        android:text="特效"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

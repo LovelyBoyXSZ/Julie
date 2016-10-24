@@ -171,6 +171,8 @@ dependencies {
     //解决65535方法数限制，通过分割Dex文件解决
     compile 'com.android.support:multidex:1.0.1'
     //http://www.jianshu.com/p/f68b0b070c31
+
     //gson解析
     compile 'com.google.code.gson:gson:2.7'
+    compile 'com.android.support:design:25.0.0'
 }
