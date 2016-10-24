@@ -1,5 +1,12 @@
 #Julie Project Version
 </br></br>最近项目发布了新的版本，闲来无事，整理了一下平时收集的东西，算是做了个小项目，都是基础的东西，留着以后可以用，也能看看..免得再找..
+
+###3D动画特效
+</br>date:2016年10月24日10:57:44
+</br>from:https://github.com/githubwing/ThreeDLayout/blob/master/README_CN.md
+</br>翻转效果..
+
+
 ###解决android app方法数65535限制
 </br>date:2016年10月21日12:06:22
 </br>from:http://www.jianshu.com/p/f68b0b070c31
