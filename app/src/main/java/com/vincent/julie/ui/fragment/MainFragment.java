@@ -93,6 +93,7 @@ public class MainFragment extends BackHandledFragment {
                 break;
             case R.id.btn_go_interception:
                 SystemUtilts.goInterceptionAct();
+//                SystemUtilts.goXiaoMiPermissionManagerActivity(getContext(),"打开失败");
                 break;
             case R.id.btn_test:
                 Intent intent=new Intent(getActivity(), InternetActivity.class);

@@ -768,6 +768,27 @@ public class SystemUtilts {
     //com.huawei.systemmanager
 //    com.android.settings
 
+
+    /**
+     * com.miui.securitycenter/com.miui.permcenter.permissions.AppPermissionsTabActivity
+     * @param context 尝试失败，安全异常
+     * @param errMsg 错误消息
+     */
+    public static void goXiaoMiPermissionManagerActivity(Context context,String errMsg){
+        try {
+            Intent intent = new Intent("com.vincent.julie");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            ComponentName comp = new ComponentName("com.miui.securitycenter", "com.miui.permcenter.permissions.AppPermissionsTabActivity");
+            intent.setComponent(comp);
+            context.startActivity(intent);
+        }catch (SecurityException e){
+            e.printStackTrace();
+        }catch (Exception e){
+            ToastUtils.showSingleToastCenter(context,errMsg);
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 通过反射获取类对象
      * @param context

@@ -23,10 +23,6 @@ public class VolleyUtils {
 
     private static RequestQueue mRequestQueue;
 
-    //public static final String SERVER_URL = "http://192.168.0.18/";
-    public static final String SERVER_URL_1 = "http://192.168.0.18/";
-    public static final String SERVER_URL = "http://120.25.146.90/";
-
     public static RequestQueue getRequestQueue() {
         // lazy initialize the request queue, the queue instance will be
         // created when it is accessed for the first time
