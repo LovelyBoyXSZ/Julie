@@ -174,5 +174,5 @@ dependencies {
 
     //gson解析
     compile 'com.google.code.gson:gson:2.7'
-    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:design:25.0.0'
 }
